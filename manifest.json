@@ -1,0 +1,17 @@
+{
+    "manifest_version": 2,
+    "name": "VkReOpt",
+    "version": "1.0.0",
+    "content_scripts": [
+        {
+          "matches": [
+            "https://vk.com/*",
+            "http://vk.com/*"
+          ],
+          "js": ["content/content.js"]
+        }
+    ],
+    "background": {
+        "scripts": ["background/background.js"]
+      }
+}
