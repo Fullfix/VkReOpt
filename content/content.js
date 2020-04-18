@@ -23,7 +23,7 @@ const sendMessages = (ListOfMessages) => {
 
 window.onload = () => {
     document.addEventListener("keydown", (e) => {
-        if (e.code == "AltLeft") {
+        if (e.code == "AltRight") {
             let ListOfMessages = [];
             let ListOfDivs = document.getElementsByClassName("im-mess_selected")
             for (let div of ListOfDivs) {
