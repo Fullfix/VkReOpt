@@ -2,6 +2,7 @@
     "manifest_version": 2,
     "name": "VkReOpt",
     "version": "1.0.0",
+    "permissions": ["storage", "declarativeContent", "tabs"],
     "content_scripts": [
         {
           "matches": [
@@ -12,6 +13,10 @@
         }
     ],
     "background": {
-        "scripts": ["background/background.js"]
-      }
+        "scripts": ["background/background.js"],
+        "persistant": false
+    },
+    "browser_action": {
+        "default_popup": "popup/popup.html"
+    }
 }
