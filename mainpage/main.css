@@ -1,0 +1,41 @@
+.message_img {
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    float: left;
+}
+.message_delete img{
+    width: 15px;
+    height: 15px;
+
+}
+.message_delete{
+    margin-left: 20px;
+    margin-top: 6px;
+}
+.message_main {
+    margin-bottom: 10px;
+    width: auto;
+    height: auto;
+    float: left;
+    margin-left: 10px;
+    min-width: 200px;
+}
+.message_info {
+    margin-left: 10px;
+    margin-top: 10px;
+    float: left;
+    color: #42648b;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+}
+.message_text {
+    margin-left: 46px;
+    margin-top: 20px;
+    font-size: 13px;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+body{
+    font-family: -apple-system,BlinkMacSystemFont,Roboto,Open Sans,Helvetica Neue,"Noto Sans Armenian","Noto Sans Bengali","Noto Sans Cherokee","Noto Sans Devanagari","Noto Sans Ethiopic","Noto Sans Georgian","Noto Sans Hebrew","Noto Sans Kannada","Noto Sans Khmer","Noto Sans Lao","Noto Sans Osmanya","Noto Sans Tamil","Noto Sans Telugu","Noto Sans Thai",sans-serif;
+}

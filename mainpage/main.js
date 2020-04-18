@@ -20,8 +20,8 @@ window.onload = () => {
             deleteBtn.appendChild(deleteIcon);
             messageDiv.appendChild(image);
             messageDiv.appendChild(infoDiv);
-            messageDiv.appendChild(textDiv);
             messageDiv.appendChild(deleteBtn);
+            messageDiv.appendChild(textDiv);
             document.getElementById("content").appendChild(messageDiv);
         }
     })
