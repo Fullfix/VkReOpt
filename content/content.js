@@ -1,3 +1,26 @@
+const createIds = (ListOfMessages, oldMessages) => {
+    let maxId;
+    if (oldMessages.length > 0) {
+        let Idlist = oldMessages.map((msg => msg[3]));
+        maxId = Math.max(...Idlist);
+    }
+    else {
+        maxId = 0
+    }
+    let newList = ListOfMessages.map((msg, i) => {
+        msg.push(maxId + i + 1);
+        return msg;
+    })
+    return newList;
+}
+
+const sendMessages = (ListOfMessages) => {
+    chrome.storage.local.get("messages", (obj) => {
+        newMessages = obj.messages.concat(createIds(ListOfMessages, obj.messages));
+        chrome.storage.local.set({messages: newMessages});
+    })
+}
+
 window.onload = () => {
     document.addEventListener("keydown", (e) => {
         if (e.code == "AltLeft") {
@@ -11,10 +34,7 @@ window.onload = () => {
                 .innerHTML;
                 ListOfMessages.push([text, photoURL, name]);
             }
-            chrome.storage.local.get("messages", (obj) => {
-                newMessages = obj.messages.concat(ListOfMessages);
-                chrome.storage.local.set({messages: newMessages});
-            })
+            sendMessages(ListOfMessages);
         }
     })
 }
