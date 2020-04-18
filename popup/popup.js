@@ -1,5 +1,6 @@
 const renderMainPage = () => {
-    chrome.tabs.create({url: chrome.extension.getURL("mainpage/main.html")})
+    chrome.tabs.create({url: chrome.extension.getURL("mainpage/main.html")});
+    chrome.extension.sendMessage({mainpagecreated: true});
 }
 
 window.onload = () => {

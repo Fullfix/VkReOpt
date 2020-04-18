@@ -7,7 +7,8 @@ const deleteMessage = function() {
     })
 }
 
-window.onload = () => {
+const loadScreen = function() {
+    document.getElementById("content").innerHTML = ""
     chrome.storage.local.get("messages", (obj) => {
         for (let message of obj.messages) {
             let messageDiv = document.createElement("div");
@@ -34,6 +35,15 @@ window.onload = () => {
             messageDiv.appendChild(deleteBtn);
             messageDiv.appendChild(textDiv);
             document.getElementById("content").appendChild(messageDiv);
+        }
+    })
+}
+
+window.onload = () => {
+    loadScreen();
+    chrome.runtime.onMessage.addListener((message) => {
+        if (message.activated) {
+            loadScreen();
         }
     })
 }
