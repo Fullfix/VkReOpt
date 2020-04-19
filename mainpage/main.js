@@ -7,7 +7,11 @@ const deleteMessage = function() {
     })
 }
 
-const setDragDrop = function() {}
+const setDragDrop = function() {
+    let sortable = new Sortable(document.getElementById("content"), {
+        animation: 150
+    })
+}
 
 const loadScreen = function() {
     document.getElementById("content").innerHTML = ""
@@ -58,7 +62,6 @@ let flag = false;
 let con = document.getElementById("content");
 document.getElementById("but").addEventListener("click", ChangeType);
 function ChangeType() {
-    console.log("fff");
     if (!flag){
         con.style.gridTemplateColumns = "repeat(auto-fit, minmax(250px, 1fr))";
         flag = true;
