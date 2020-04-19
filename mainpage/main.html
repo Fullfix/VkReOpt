@@ -7,11 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script type="module" src="main.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/draggable/1.0.0-beta.9/draggable.bundle.js"></script>
-    </script>
     <link type="text/css" rel="stylesheet" href="main.css">
     <title>VkReOpt</title>
 </head>
 <body>
-    <div id="content"></div>
+    <div id="content" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));"></div>
+    <button id="but" style="position: fixed; right: 0px; top: 0px;">Режим сетки</button>
+    <label for="X" style="position: fixed; right: 0px; top: 21px; width: 70px; display: none"> Min X</label>
+    <input id="X" type="text" value="250px" placeholder="Min X" style="position: fixed; right: 0px; top: 35px; width: 70px; display: none">
 </body>
 </html>

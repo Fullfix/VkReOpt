@@ -52,4 +52,19 @@ window.onload = () => {
             loadScreen();
         }
     })
+
+}
+let flag = false;
+let con = document.getElementById("content");
+document.getElementById("but").addEventListener("click", ChangeType);
+function ChangeType() {
+    console.log("fff");
+    if (!flag){
+        con.style.gridTemplateColumns = "repeat(auto-fit, minmax(250px, 1fr))";
+        flag = true;
+    }
+    else {
+        con.style.gridTemplateColumns = "repeat(auto-fill, minmax(250px, 1fr))"
+        flag = false
+    }
 }

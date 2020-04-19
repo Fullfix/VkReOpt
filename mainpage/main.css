@@ -45,3 +45,7 @@ body{
 .invisible {
     visibility: hidden;
 }
+#content {
+    display: grid;
+    width: calc(100vw - 50px);
+}
