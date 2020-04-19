@@ -85,17 +85,22 @@ window.onload = () => {
 let flag = false;
 let root = document.documentElement;
 root.style.setProperty('--typeGrid', "auto-fill");
-root.style.setProperty('--gap', 15 + 'px');
+root.style.setProperty('--gap_X', 15 + 'px');
+root.style.setProperty('--gap_Y', 10 + 'px');
 root.style.setProperty('--minSize', 200 + 'px');
+root.style.setProperty('--height', "auto");
 let con = document.getElementById("content");
 let save = document.getElementById("saveSettings");
 document.getElementById("but").addEventListener("click", OpenSettings);
 save.addEventListener('click', ChangeType);
 function ChangeType() {
     let GridType = document.getElementById("TypeGrid");
-    let GridGap = document.getElementById("gridGap");
+    let GridGap_X = document.getElementById("gridGap_X");
+    let GridGap_Y = document.getElementById("gridGap_Y");
     let GridElSize = document.getElementById("gridElSize");
-    root.style.setProperty('--gap', (10 + +GridGap.value) + 'px');
+    let gridHeightEc = document.getElementById("gridHeightEc");
+    root.style.setProperty('--gap_X', (10 + +GridGap_X.value) + 'px');
+    root.style.setProperty('--gap_Y', +GridGap_Y.value + 'px');
     root.style.setProperty('--minSize', +GridElSize.value + 'px');
     console.log(GridType.value);
     if (GridType.value == "AutoFill"){
@@ -104,4 +109,6 @@ function ChangeType() {
     else {
         root.style.setProperty('--typeGrid', "auto-fit");
     }
+    if (gridHeightEc.checked) root.style.setProperty('--height', "calc(100% - 10px)");
+    else root.style.setProperty('--height', "auto");
 }

@@ -14,9 +14,8 @@
     border: none;
 }
 .message_main {
-    margin-bottom: 10px;
     width: 100%;
-    height: auto;
+    height: var(--height);
     float: left;
     min-width: var(--minSize);
     border: 5px solid #EDF0F5;
@@ -47,7 +46,8 @@ body{
 #content {
     display: grid;
     width: calc(100vw - 50px);
-    grid-gap: var(--gap);
+    grid-column-gap: var(--gap_X);
+    grid-row-gap: var(--gap_Y);
     grid-template-columns: repeat(var(--typeGrid), minmax(var(--minSize), 1fr));
 }
 .settings {
