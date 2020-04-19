@@ -18,7 +18,7 @@
     width: 100%;
     height: auto;
     float: left;
-    min-width: 200px;
+    min-width: var(--minSize);
     border: 5px solid #EDF0F5;
     background: #EDF0f5;
 }
@@ -47,5 +47,18 @@ body{
 #content {
     display: grid;
     width: calc(100vw - 50px);
-    grid-gap: 15px
+    grid-gap: var(--gap);
+    grid-template-columns: repeat(var(--typeGrid), minmax(var(--minSize), 1fr));
+}
+.settings {
+    position: fixed;
+    width: 300px;
+    height: 700px;
+    overflow-y: auto;
+    top: 21px;
+    right: 0px;
+    background: grey;
+    transition: 1s;
+    border-radius: 50px 0px 0px 50px;
+    text-align: center;
 }

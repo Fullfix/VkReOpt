@@ -11,9 +11,20 @@
     <title>VkReOpt</title>
 </head>
 <body>
-    <div id="content" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));"></div>
-    <button id="but" style="position: fixed; right: 0px; top: 0px;">Режим сетки</button>
-    <label for="X" style="position: fixed; right: 0px; top: 21px; width: 70px; display: none"> Min X</label>
-    <input id="X" type="text" value="250px" placeholder="Min X" style="position: fixed; right: 0px; top: 35px; width: 70px; display: none">
+    <h1 align="center">VkReOpt</h1>
+    <div id="content" style=""></div>
+    <div id="settings" class="settings" style="transform: translate(300px, 0)">
+        <p style="font-size: 16px; margin-top: 50px; margin-bottom: 5px">Тип сетки: </p>
+        <select id="TypeGrid" size="1" style="font-size: 16px;  margin-bottom: 10px;">
+            <option>AutoFill</option>
+            <option>AutoFit</option>
+        </select>
+        <p style="font-size: 16px;margin-bottom: 5px; margin-top: 10px;">Промежуток между элементами: </p>
+        <input type="number" id="gridGap" value="5" style="font-size: 16px; text-align: center; width: 150px">
+        <p style="font-size: 16px;margin-bottom: 5px; margin-top: 10px;">Минимальный размер элементов: </p>
+        <input type="number" id="gridElSize" value="200" style="font-size: 16px; text-align: center; width: 150px">
+        <button id="saveSettings" style="position: absolute; width: 100%; bottom: 50px; left: 0px;font-size: 20px">Сохранить</button>
+    </div>
+    <button id="but" style="position: fixed; right: 0px; top: 0px;">Настройки</button>
 </body>
 </html>

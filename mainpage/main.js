@@ -64,7 +64,15 @@ const loadScreen = function() {
         setDragDrop();
     })
 }
-
+function OpenSettings() {
+    let settings = document.getElementById("settings");
+    if (settings.style.transform == "translate(300px, 0px)") {
+        settings.style.transform = "translate(0px, 0px)";
+    }
+    else {
+        settings.style.transform = "translate(300px, 0px)";
+    }
+}
 window.onload = () => {
     loadScreen();
     chrome.runtime.onMessage.addListener((message) => {
@@ -75,15 +83,25 @@ window.onload = () => {
 
 }
 let flag = false;
+let root = document.documentElement;
+root.style.setProperty('--typeGrid', "auto-fill");
+root.style.setProperty('--gap', 15 + 'px');
+root.style.setProperty('--minSize', 200 + 'px');
 let con = document.getElementById("content");
-document.getElementById("but").addEventListener("click", ChangeType);
+let save = document.getElementById("saveSettings");
+document.getElementById("but").addEventListener("click", OpenSettings);
+save.addEventListener('click', ChangeType);
 function ChangeType() {
-    if (!flag){
-        con.style.gridTemplateColumns = "repeat(auto-fit, minmax(200px, 1fr))";
-        flag = true;
+    let GridType = document.getElementById("TypeGrid");
+    let GridGap = document.getElementById("gridGap");
+    let GridElSize = document.getElementById("gridElSize");
+    root.style.setProperty('--gap', (10 + +GridGap.value) + 'px');
+    root.style.setProperty('--minSize', +GridElSize.value + 'px');
+    console.log(GridType.value);
+    if (GridType.value == "AutoFill"){
+        root.style.setProperty('--typeGrid', "auto-fill");
     }
     else {
-        con.style.gridTemplateColumns = "repeat(auto-fill, minmax(200px, 1fr))"
-        flag = false
+        root.style.setProperty('--typeGrid', "auto-fit");
     }
 }
