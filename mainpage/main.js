@@ -7,10 +7,26 @@ const deleteMessage = function() {
     })
 }
 
+const changeMessageOrder = (messages) => {
+    let ids = Array.from(messages).map(elem => elem.id.split("message")[1]);
+    chrome.storage.local.get("messages", (obj) => {
+        let newMessages = [];
+        for (let id of ids) {
+            let message = obj.messages.find(msg => msg[3] == id);
+            newMessages.push(message);
+        }
+        chrome.storage.local.set({messages: newMessages});
+    })
+}
+
 const setDragDrop = function() {
     let sortable = new Sortable(document.getElementById("content"), {
-        animation: 150
+        animation: 150,
+        onUpdate: (event) => {
+            changeMessageOrder(document.getElementsByClassName("message_main"));
+        }
     })
+
 }
 
 const loadScreen = function() {
