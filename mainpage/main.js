@@ -1,11 +1,13 @@
 const deleteMessage = function() {
     let id = this.parentNode.id.split("message")[1];
-    this.parentNode.parentNode.removeChild(this.parentNode);
+    this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
     chrome.storage.local.get("messages", (obj) => {
         let newMessages = obj.messages.filter(msg => msg[3] != id);
         chrome.storage.local.set({messages: newMessages});
     })
 }
+
+const setDragDrop = function() {}
 
 const loadScreen = function() {
     document.getElementById("content").innerHTML = ""
@@ -34,8 +36,12 @@ const loadScreen = function() {
             messageDiv.appendChild(infoDiv);
             messageDiv.appendChild(deleteBtn);
             messageDiv.appendChild(textDiv);
-            document.getElementById("content").appendChild(messageDiv);
+            let messageCont = document.createElement("div");
+            messageCont.className = "message_cont"
+            messageCont.appendChild(messageDiv);
+            document.getElementById("content").appendChild(messageCont);
         }
+        setDragDrop();
     })
 }
 
