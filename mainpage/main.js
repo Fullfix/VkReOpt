@@ -63,11 +63,11 @@ let con = document.getElementById("content");
 document.getElementById("but").addEventListener("click", ChangeType);
 function ChangeType() {
     if (!flag){
-        con.style.gridTemplateColumns = "repeat(auto-fit, minmax(250px, 1fr))";
+        con.style.gridTemplateColumns = "repeat(auto-fit, minmax(200px, 1fr))";
         flag = true;
     }
     else {
-        con.style.gridTemplateColumns = "repeat(auto-fill, minmax(250px, 1fr))"
+        con.style.gridTemplateColumns = "repeat(auto-fill, minmax(200px, 1fr))"
         flag = false
     }
 }
