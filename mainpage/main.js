@@ -23,13 +23,17 @@ const changeMessageOrder = (messages) => {
 let grid = new Muuri('.grid', {dragEnabled: true, dragPlaceholder: {
         enabled: true
     }, layout: {
-    }});
 
+    }, dragSortPredicate:{
+        threshold: 30
+    }});
+let maxid = -1;
 const loadScreen = function() {
     document.getElementById("grid").innerHTML = ""
     chrome.storage.local.get("messages", (obj) => {
         for (let message of obj.messages) {
             let maxh = -1;
+            root.style.setProperty('--height', "auto");
             let messageDiv = document.createElement("div");
             messageDiv.id = "message" + message[3];
             messageDiv.className = "item-content";
@@ -58,11 +62,14 @@ const loadScreen = function() {
             messageCont.appendChild(messageDiv);
             grid.add(messageCont);
             messageCont.id = message[3];
-            for (let i = 1; i <= messageCont.id; i++){
-                if (document.getElementById(i) != null && maxh < document.getElementById(i).offsetHeight) maxh = document.getElementById(i).offsetHeight;
-                root.style.setProperty('--height', maxh + "px");
-                console.log(maxh)
+            if (maxid < messageCont.id) maxid = messageCont.id;
+            for (let i = 1; i <= maxid+1; i++){
+                if (document.getElementById(i) != null && maxh < document.getElementById(i).clientHeight) maxh = document.getElementById(i).clientHeight;
+                console.log(maxh);
+                console.log(maxid)
             }
+            root.style.setProperty('--height', maxh-10 + "px");
+            grid.refreshItems().layout();
         }
     })
 
