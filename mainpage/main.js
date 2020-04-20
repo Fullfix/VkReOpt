@@ -27,6 +27,11 @@ let grid = new Muuri('.grid', {dragEnabled: true, dragPlaceholder: {
     }, dragSortPredicate:{
         threshold: 30
     }});
+grid.on('dragReleaseEnd', (item) => {
+    changeMessageOrder(grid.getItems().map(elem => {
+        return elem.getElement().getElementsByClassName("item-content")[0];
+    }));
+})
 let maxid = -1;
 const loadScreen = function() {
     document.getElementById("grid").innerHTML = ""
@@ -65,8 +70,6 @@ const loadScreen = function() {
             if (maxid < messageCont.id) maxid = messageCont.id;
             for (let i = 1; i <= maxid+1; i++){
                 if (document.getElementById(i) != null && maxh < document.getElementById(i).clientHeight) maxh = document.getElementById(i).clientHeight;
-                console.log(maxh);
-                console.log(maxid)
             }
             root.style.setProperty('--height', maxh-10 + "px");
             grid.refreshItems().layout();
