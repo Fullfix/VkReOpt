@@ -20,13 +20,12 @@ const changeMessageOrder = (messages) => {
 }
 
 const setDragDrop = function() {
-    let sortable = new Sortable(document.getElementById("content"), {
-        animation: 150,
-        onUpdate: (event) => {
-            changeMessageOrder(document.getElementsByClassName("message_main"));
-        }
+    let sortable = new Draggable.Sortable(document.getElementById("content"), {
+        draggable: ".message_cont"
     })
-
+    // sortable.on("sortable:sort", () => {
+    //     changeMessageOrder(document.getElementsByClassName("message_main"));
+    // })
 }
 
 const loadScreen = function() {
