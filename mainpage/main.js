@@ -1,5 +1,6 @@
 const deleteMessage = function() {
     let id = this.parentNode.id.split("message")[1];
+    grid.remove(this.parentElement.parentElement)
     this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
     chrome.storage.local.get("messages", (obj) => {
         let newMessages = obj.messages.filter(msg => msg[3] != id);
@@ -19,22 +20,19 @@ const changeMessageOrder = (messages) => {
     })
 }
 
-const setDragDrop = function() {
-    let sortable = new Draggable.Sortable(document.getElementById("content"), {
-        draggable: ".message_cont"
-    })
-    // sortable.on("sortable:sort", () => {
-    //     changeMessageOrder(document.getElementsByClassName("message_main"));
-    // })
-}
+let grid = new Muuri('.grid', {dragEnabled: true, dragPlaceholder: {
+        enabled: true
+    }, layout: {
+    }});
 
 const loadScreen = function() {
-    document.getElementById("content").innerHTML = ""
+    document.getElementById("grid").innerHTML = ""
     chrome.storage.local.get("messages", (obj) => {
         for (let message of obj.messages) {
+            let maxh = -1;
             let messageDiv = document.createElement("div");
             messageDiv.id = "message" + message[3];
-            messageDiv.className = "message_main";
+            messageDiv.className = "item-content";
             let textDiv = document.createElement("div");
             textDiv.innerHTML = message[0];
             textDiv.className = "message_text";
@@ -56,14 +54,21 @@ const loadScreen = function() {
             messageDiv.appendChild(deleteBtn);
             messageDiv.appendChild(textDiv);
             let messageCont = document.createElement("div");
-            messageCont.className = "message_cont"
+            messageCont.className = "item"
             messageCont.appendChild(messageDiv);
-            document.getElementById("content").appendChild(messageCont);
+            grid.add(messageCont);
+            messageCont.id = message[3];
+            for (let i = 1; i <= messageCont.id; i++){
+                if (maxh < document.getElementById(i).clientHeight) maxh = document.getElementById(i).clientHeight;
+                root.style.setProperty('--height', maxh + "px");
+                console.log(maxh)
+            }
         }
-        setDragDrop();
     })
+
 }
 function OpenSettings() {
+    grid.refreshItems().layout();
     let settings = document.getElementById("settings");
     if (settings.style.transform == "translate(300px, 0px)") {
         settings.style.transform = "translate(0px, 0px)";
@@ -74,9 +79,11 @@ function OpenSettings() {
 }
 window.onload = () => {
     loadScreen();
+    grid.refreshItems().layout();
     chrome.runtime.onMessage.addListener((message) => {
         if (message.activated) {
             loadScreen();
+            grid.refreshItems().layout();
         }
     })
 
@@ -87,7 +94,7 @@ root.style.setProperty('--typeGrid', "auto-fill");
 root.style.setProperty('--gap_X', 15 + 'px');
 root.style.setProperty('--gap_Y', 10 + 'px');
 root.style.setProperty('--minSize', 200 + 'px');
-root.style.setProperty('--height', "auto");
+
 let con = document.getElementById("content");
 let save = document.getElementById("saveSettings");
 document.getElementById("but").addEventListener("click", OpenSettings);
