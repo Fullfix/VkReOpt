@@ -59,7 +59,7 @@ const loadScreen = function() {
             grid.add(messageCont);
             messageCont.id = message[3];
             for (let i = 1; i <= messageCont.id; i++){
-                if (maxh < document.getElementById(i).clientHeight) maxh = document.getElementById(i).clientHeight;
+                if (document.getElementById(i) != null && maxh < document.getElementById(i).offsetHeight) maxh = document.getElementById(i).offsetHeight;
                 root.style.setProperty('--height', maxh + "px");
                 console.log(maxh)
             }
