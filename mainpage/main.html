@@ -11,24 +11,25 @@
     <title>VkReOpt</title>
 </head>
 <body>
-    <h1 align="center">VkReOpt</h1>
-    <div class="grid" id="grid" style=""></div>
-    <div id="settings" class="settings" style="transform: translate(300px, 0)">
-        <p style="font-size: 16px; margin-top: 50px; margin-bottom: 5px">Тип сетки: </p>
-        <select id="TypeGrid" size="1" style="font-size: 16px;  margin-bottom: 10px;">
-            <option>AutoFill</option>
-            <option>AutoFit</option>
-        </select>
-        <p style="font-size: 16px;margin-bottom: 5px; margin-top: 10px;">Промежуток между элементами: </p>
-        <input type="number" id="gridGap_X" value="5" style="font-size: 16px; text-align: center; width: 150px">
-        <p style="font-size: 16px;margin-bottom: 5px; margin-top: 10px;">Промежуток между строками: </p>
-        <input type="number" id="gridGap_Y" value="10" style="font-size: 16px; text-align: center; width: 150px">
-        <p style="font-size: 16px;margin-bottom: 5px; margin-top: 10px;">Минимальный размер элементов: </p>
-        <input type="number" id="gridElSize" value="200" style="font-size: 16px; text-align: center; width: 150px">
-        <p style="font-size: 16px;margin-bottom: 5px; margin-top: 10px;">Выравнить по высоте: <input type="checkbox" id="gridHeightEc" style=""></p>
-
-        <button id="saveSettings" style="position: absolute; width: 100%; bottom: 50px; left: 0px;font-size: 20px">Сохранить</button>
+    <div class="header">
+        <h1 align="center" class="Title">Редактор сообщений</h1>
+        <div style="position: fixed; right: 20px; width: 200px; margin-top: 15px; height: 50px">
+            <img src="../icons/vk_icon.png" width="50px" height="50px" style="float: left">
+            <h1 style="margin-left: 55px; margin-top: 10px; margin-bottom: 0; color: white">ReOpt</h1>
+        </div>
     </div>
-    <button id="but" style="position: fixed; right: 0px; top: 0px;">Настройки</button>
+    <div class="grid" id="grid" style=""></div>
+    <div id="settings" class="settings" style="transform: translate(-300px, 0)">
+        <p style="font-size: 18px;margin-bottom: 5px; margin-top: 10px;">Промежуток между сообщениями: </p>
+        <input type="number" id="gridGap_X" value="5" style="font-size: 16px; text-align: center; width: 150px">
+        <p style="font-size: 18px;margin-bottom: 5px; margin-top: 10px;">Промежуток между строками: </p>
+        <input type="number" id="gridGap_Y" value="5" style="font-size: 16px; text-align: center; width: 150px">
+        <p style="font-size: 18px;margin-bottom: 5px; margin-top: 10px;">Ширина сообщений: </p>
+        <input type="number" id="gridElSize" value="250" style="font-size: 16px; text-align: center; width: 150px">
+        <button id="saveSettings" style="width: 80%;font-size: 20px; margin-top: 15px">Сохранить</button> <!--Временная кнопка пока нет ползунков-->
+    </div>
+<button id="but" class="setbut">
+    <img src="../icons/Gear.png" width="50px" height="50px">
+</button>
 </body>
 </html>

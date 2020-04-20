@@ -78,13 +78,19 @@ const loadScreen = function() {
 
 }
 function OpenSettings() {
-    grid.refreshItems().layout();
+
     let settings = document.getElementById("settings");
-    if (settings.style.transform == "translate(300px, 0px)") {
+    if (settings.style.transform == "translate(-300px, 0px)") {
         settings.style.transform = "translate(0px, 0px)";
+        root.style.setProperty('--gridWidth', "calc(100vw - 300px)");
+        root.style.setProperty('--TXGrid', 300 + 'px');
+        grid.refreshItems().layout();
     }
     else {
-        settings.style.transform = "translate(300px, 0px)";
+        settings.style.transform = "translate(-300px, 0px)";
+        root.style.setProperty('--gridWidth', 100 + 'vw');
+        root.style.setProperty('--TXGrid', 0 + 'px');
+        grid.refreshItems().layout();
     }
 }
 window.onload = () => {
@@ -101,30 +107,21 @@ window.onload = () => {
 let flag = false;
 let root = document.documentElement;
 root.style.setProperty('--typeGrid', "auto-fill");
-root.style.setProperty('--gap_X', 15 + 'px');
+root.style.setProperty('--gap_X', 10 + 'px');
 root.style.setProperty('--gap_Y', 10 + 'px');
-root.style.setProperty('--minSize', 200 + 'px');
-
+root.style.setProperty('--sizeX', 250 + 'px');
+root.style.setProperty('--gridWidth', 100 + 'vw');
+root.style.setProperty('--TXGrid', 0 + 'px');
 let con = document.getElementById("content");
 let save = document.getElementById("saveSettings");
 document.getElementById("but").addEventListener("click", OpenSettings);
 save.addEventListener('click', ChangeType);
 function ChangeType() {
-    let GridType = document.getElementById("TypeGrid");
     let GridGap_X = document.getElementById("gridGap_X");
     let GridGap_Y = document.getElementById("gridGap_Y");
     let GridElSize = document.getElementById("gridElSize");
-    let gridHeightEc = document.getElementById("gridHeightEc");
-    root.style.setProperty('--gap_X', (10 + +GridGap_X.value) + 'px');
-    root.style.setProperty('--gap_Y', +GridGap_Y.value + 'px');
-    root.style.setProperty('--minSize', +GridElSize.value + 'px');
-    console.log(GridType.value);
-    if (GridType.value == "AutoFill"){
-        root.style.setProperty('--typeGrid', "auto-fill");
-    }
-    else {
-        root.style.setProperty('--typeGrid', "auto-fit");
-    }
-    if (gridHeightEc.checked) root.style.setProperty('--height', "calc(100% - 10px)");
-    else root.style.setProperty('--height', "auto");
+    root.style.setProperty('--gap_X', (5 + +GridGap_X.value) + 'px');
+    root.style.setProperty('--gap_Y', (5 + +GridGap_Y.value) + 'px');
+    root.style.setProperty('--sizeX', + GridElSize.value + 'px');
+    grid.refreshItems().layout();
 }
