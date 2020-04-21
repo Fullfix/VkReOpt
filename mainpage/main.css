@@ -30,7 +30,7 @@ body {
     float: left;
     color: #42648b;
     font-weight: 700;
-
+    filter: var(--VarBlur);
     -webkit-font-smoothing: antialiased;
 }
 .item {
@@ -95,12 +95,13 @@ body{
     width: 100%;
     position: fixed;
     top: 0px;
+    z-index: 1000;
 }
 .Title {
     position: absolute;
     color: white;
     margin: 0;
-    left: calc((100vw - 95px) / 2);
+    left: calc((100vw - 243px) / 2);
     margin-top: 25px;
 }
 .setbut {
@@ -112,10 +113,28 @@ body{
     border: 0;
     background: 0;
     padding: 0;
+    z-index: 1000;
 }
 .setbut:focus{
      outline: 0;
  }
 .setbut:hover{
     cursor: pointer;
+}
+.blurbut {
+    font-size: 18px;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    width: 200px;
+    border: 0;
+    background: 0
+}
+.blurbut:focus {
+    outline: 0;
+}
+.blur_icon{
+    position: absolute;
+    left: 55px;
+    top: 5px;
+    filter: invert(var(--BlurInvert));
 }

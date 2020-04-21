@@ -105,6 +105,7 @@ window.onload = () => {
 
 }
 let flag = false;
+let BlurFlag = false;
 let root = document.documentElement;
 root.style.setProperty('--typeGrid', "auto-fill");
 root.style.setProperty('--gap_X', 10 + 'px');
@@ -115,7 +116,20 @@ root.style.setProperty('--TXGrid', 0 + 'px');
 let con = document.getElementById("content");
 let save = document.getElementById("saveSettings");
 document.getElementById("but").addEventListener("click", OpenSettings);
+document.getElementById("blurbut").addEventListener("click", MakeBlur);
 save.addEventListener('click', ChangeType);
+function MakeBlur() {
+    if (!BlurFlag) {
+        root.style.setProperty('--VarBlur', 'blur(5px)');
+        root.style.setProperty('--BlurInvert', '1');
+        BlurFlag = true;
+    }
+    else {
+        root.style.setProperty('--VarBlur', 'none');
+        root.style.setProperty('--BlurInvert', '0');
+        BlurFlag = false;
+    }
+}
 function ChangeType() {
     let GridGap_X = document.getElementById("gridGap_X");
     let GridGap_Y = document.getElementById("gridGap_Y");
