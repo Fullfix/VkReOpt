@@ -14,6 +14,13 @@ const createIds = (ListOfMessages, oldMessages) => {
     return newList;
 }
 
+const convertSource = (src) => {
+    if (src.startsWith("/")) {
+        return "https://vk.com" + src;
+    }
+    return src;
+}
+
 const sendMessages = (ListOfMessages) => {
     chrome.storage.local.get("messages", (obj) => {
         newMessages = obj.messages.concat(createIds(ListOfMessages, obj.messages));
@@ -22,8 +29,22 @@ const sendMessages = (ListOfMessages) => {
 }
 
 const parseTextDiv = (textDiv) => {
-    let text = Array.from(textDiv.childNodes).find(node => node.nodeName == "#text");
-    return text;
+    let textList = Array.from(textDiv.childNodes).filter(node => {
+        return node.nodeName == "#text" || node.className == "emoji";
+    });
+    let textString = "";
+    for (let node of textList) {
+        if (node.nodeType == 1) {
+            if (node.className == "emoji") {
+                node.src = convertSource(node.src);
+            }
+            textString += node.outerHTML;
+        }
+        else if (node.nodeType == 3) {
+            textString += node.nodeValue;
+        }
+    }
+    return textString;
 }
 
 window.onload = () => {
@@ -38,7 +59,7 @@ window.onload = () => {
                 let textDiv = div.getElementsByClassName("im-mess--text wall_module _im_log_body")[0];
                 let text = parseTextDiv(textDiv);
                 if (text) {
-                    ListOfMessages.push([text.nodeValue, photoURL, name]);
+                    ListOfMessages.push([text, photoURL, name]);
                 }
             }
             if (ListOfMessages) {
