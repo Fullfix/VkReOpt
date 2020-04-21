@@ -52,18 +52,20 @@ window.onload = () => {
         if (e.code == "AltRight") {
             let ListOfMessages = [];
             let ListOfDivs = document.getElementsByClassName("im-mess_selected")
-            for (let div of ListOfDivs) {
-                let parent = div.parentNode.parentNode.parentNode
-                let photoURL = parent.getElementsByTagName("img")[0].src;
-                let name = parent.getElementsByClassName("im-mess-stack--lnk")[0].innerHTML;
-                let textDiv = div.getElementsByClassName("im-mess--text wall_module _im_log_body")[0];
-                let text = parseTextDiv(textDiv);
-                if (text) {
-                    ListOfMessages.push([text, photoURL, name]);
+            if (ListOfDivs) {
+                for (let div of ListOfDivs) {
+                    let parent = div.parentNode.parentNode.parentNode
+                    let photoURL = parent.getElementsByTagName("img")[0].src;
+                    let name = parent.getElementsByClassName("im-mess-stack--lnk")[0].innerHTML;
+                    let textDiv = div.getElementsByClassName("im-mess--text wall_module _im_log_body")[0];
+                    let text = parseTextDiv(textDiv);
+                    if (text) {
+                        ListOfMessages.push([text, photoURL, name]);
+                    }
                 }
-            }
-            if (ListOfMessages) {
-                sendMessages(ListOfMessages);
+                if (ListOfMessages) {
+                    sendMessages(ListOfMessages);
+                }
             }
         }
     })
