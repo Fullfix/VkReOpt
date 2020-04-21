@@ -21,6 +21,11 @@ const convertSource = (src) => {
     return src;
 }
 
+const unselectMessages = () => {
+    let btn = document.getElementsByClassName("im-page--selected-messages-remove")
+    if (btn) btn[0].click();
+}
+
 const sendMessages = (ListOfMessages) => {
     chrome.storage.local.get("messages", (obj) => {
         newMessages = obj.messages.concat(createIds(ListOfMessages, obj.messages));
@@ -65,6 +70,7 @@ window.onload = () => {
                 }
                 if (ListOfMessages) {
                     sendMessages(ListOfMessages);
+                    unselectMessages();
                 }
             }
         }
