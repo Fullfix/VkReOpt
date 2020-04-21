@@ -21,6 +21,11 @@ const sendMessages = (ListOfMessages) => {
     })
 }
 
+const parseTextDiv = (textDiv) => {
+    let text = Array.from(textDiv.childNodes).find(node => node.nodeName == "#text");
+    return text;
+}
+
 window.onload = () => {
     document.addEventListener("keydown", (e) => {
         if (e.code == "AltRight") {
@@ -30,11 +35,15 @@ window.onload = () => {
                 let parent = div.parentNode.parentNode.parentNode
                 let photoURL = parent.getElementsByTagName("img")[0].src;
                 let name = parent.getElementsByClassName("im-mess-stack--lnk")[0].innerHTML;
-                let text = div.getElementsByClassName("im-mess--text wall_module _im_log_body")[0]
-                .innerHTML;
-                ListOfMessages.push([text, photoURL, name]);
+                let textDiv = div.getElementsByClassName("im-mess--text wall_module _im_log_body")[0];
+                let text = parseTextDiv(textDiv);
+                if (text) {
+                    ListOfMessages.push([text.nodeValue, photoURL, name]);
+                }
             }
-            sendMessages(ListOfMessages);
+            if (ListOfMessages) {
+                sendMessages(ListOfMessages);
+            }
         }
     })
 }
