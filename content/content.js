@@ -28,8 +28,20 @@ const unselectMessages = () => {
 
 const sendMessages = (ListOfMessages) => {
     chrome.storage.local.get("messages", (obj) => {
-        newMessages = obj.messages.concat(createIds(ListOfMessages, obj.messages));
-        chrome.storage.local.set({messages: newMessages});
+        chrome.storage.sync.get("allowSameMessages", (data) => {
+            if (!data.allowSameMessages) {
+                ListOfMessages = ListOfMessages.filter(msg => {
+                    for (let oldmsg of obj.messages) {
+                        if (msg[0] == oldmsg[0] && msg[1] == oldmsg[1] && msg[2] == oldmsg[2]) {
+                            return false;
+                        }
+                    }
+                    return true;
+                })
+            }
+            newMessages = obj.messages.concat(createIds(ListOfMessages, obj.messages));
+            chrome.storage.local.set({messages: newMessages});
+        })
     })
 }
 
@@ -70,7 +82,11 @@ window.onload = () => {
                 }
                 if (ListOfMessages) {
                     sendMessages(ListOfMessages);
-                    unselectMessages();
+                    chrome.storage.sync.get("unselectAfterSave", (obj) => {
+                        if (obj.unselectAfterSave) {
+                            unselectMessages();
+                        }
+                    })
                 }
             }
         }

@@ -2,6 +2,7 @@ let mainTabId = null;
 
 chrome.runtime.onInstalled.addListener((details) => {
     chrome.storage.local.set({messages: []});
+    chrome.storage.sync.set({unselectAfterSave: true, allowSameMessages: false});
 })
 
 chrome.extension.onMessage.addListener((message) => {
