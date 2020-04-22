@@ -68,29 +68,31 @@ const parseTextDiv = (textDiv) => {
 
 window.onload = () => {
     document.addEventListener("keyup", (e) => {
-        if (e.code == "AltRight") {
-            let ListOfMessages = [];
-            let ListOfDivs = document.getElementsByClassName("im-mess_selected")
-            if (ListOfDivs.length >= 0) {
-                for (let div of ListOfDivs) {
-                    let parent = div.parentNode.parentNode.parentNode
-                    let photoURL = parent.getElementsByTagName("img")[0].src;
-                    let name = parent.getElementsByClassName("im-mess-stack--lnk")[0].innerHTML;
-                    let textDiv = div.getElementsByClassName("im-mess--text wall_module _im_log_body")[0];
-                    let text = parseTextDiv(textDiv);
-                    if (text) {
-                        ListOfMessages.push([text, photoURL, name]);
+        chrome.storage.sync.get("enabled", (endata) => {
+            if (e.code == "AltRight" && endata.enabled) {
+                let ListOfMessages = [];
+                let ListOfDivs = document.getElementsByClassName("im-mess_selected")
+                if (ListOfDivs.length >= 0) {
+                    for (let div of ListOfDivs) {
+                        let parent = div.parentNode.parentNode.parentNode
+                        let photoURL = parent.getElementsByTagName("img")[0].src;
+                        let name = parent.getElementsByClassName("im-mess-stack--lnk")[0].innerHTML;
+                        let textDiv = div.getElementsByClassName("im-mess--text wall_module _im_log_body")[0];
+                        let text = parseTextDiv(textDiv);
+                        if (text) {
+                            ListOfMessages.push([text, photoURL, name]);
+                        }
+                    }
+                    if (ListOfMessages.length >= 0) {
+                        sendMessages(ListOfMessages);
+                        chrome.storage.sync.get("unselectAfterSave", (obj) => {
+                            if (obj.unselectAfterSave) {
+                                unselectMessages();
+                            }
+                        })
                     }
                 }
-                if (ListOfMessages.length >= 0) {
-                    sendMessages(ListOfMessages);
-                    chrome.storage.sync.get("unselectAfterSave", (obj) => {
-                        if (obj.unselectAfterSave) {
-                            unselectMessages();
-                        }
-                    })
-                }
             }
-        }
+        })
     })
 }
