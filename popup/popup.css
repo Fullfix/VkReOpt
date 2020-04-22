@@ -1,0 +1,100 @@
+body {
+    width: 300px;
+    height: 250px;
+    background-color: #F5F5F5;
+    font-family: -apple-system,BlinkMacSystemFont,Roboto,Open Sans,Helvetica Neue,"Noto Sans Armenian","Noto Sans Bengali","Noto Sans Cherokee","Noto Sans Devanagari","Noto Sans Ethiopic","Noto Sans Georgian","Noto Sans Hebrew","Noto Sans Kannada","Noto Sans Khmer","Noto Sans Lao","Noto Sans Osmanya","Noto Sans Tamil","Noto Sans Telugu","Noto Sans Thai",sans-serif;
+}
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 10px;
+}
+.slider:before {
+    position: absolute;
+    border-radius: 50%;
+    content: "";
+    height: 12px;
+    width: 12px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider{
+    background-color: #2196F3;
+}
+input:checked + .set_slider{
+    background-color: black;
+}
+input:checked + .slider:before{
+    -webkit-transform: translateX(20px);
+    -ms-transform: translateX(20px);
+    transform: translateX(20px);
+}
+#redirectbtn{
+    display: block;
+    bottom: 0px;
+    position: absolute;
+    background: none;
+    border: 0;
+    width: 100%;
+    font-size: 20px;
+    color: #3A4E65;
+    padding: 0;
+    left: 0px;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+.logo {
+    position: fixed;
+    right: 20px;
+    width: 100px;
+    height: 50px;
+}
+.switch_name{
+    display: inline-block;
+    margin: 0;
+    font-size: 20px;
+    line-height: 20px;
+    position: absolute;
+    margin-left: 5px;
+}
+.settings_logo{
+    margin-top: 25px;
+    margin-bottom: 5px;
+}
+.settings {
+    width: 250px;
+    height: 65px;
+    padding: 5px;
+    margin-left: 25px;
+    position: relative;
+    background: white;
+}
+p {
+    color: #3A4E65;
+}
+h1 {
+    color: #3A4E65;
+}
