@@ -127,14 +127,54 @@ body{
     margin-top: 10px;
     width: 200px;
     border: 0;
-    background: 0
+    background: 0;
+    position: relative;
 }
 .blurbut:focus {
     outline: 0;
 }
 .blur_icon{
     position: absolute;
-    left: 55px;
-    top: 5px;
+    left: 5px;
+    bottom: 1px;
     filter: invert(var(--BlurInvert));
+}
+.text_icon{
+    position: absolute;
+    left: 5px;
+    bottom: 1px;
+    filter: invert(var(--TextInvert));
+}
+#slider_gapX{
+    width: 200px;
+    margin-left: 50px;
+    margin-top: 15px;
+    border-radius: 8px;
+}
+#slider_gapY{
+    width: 200px;
+    margin-left: 50px;
+    margin-top: 15px;
+    border-radius: 8px;
+}
+#slider_size{
+    width: 200px;
+    margin-left: 50px;
+    margin-top: 15px;
+    border-radius: 8px;
+}
+.noUi-handle:before, .noUi-handle:after{
+    background: 0;
+}
+.noUi-handle:focus{
+    outline: 0;
+}
+.noUi-handle {
+    border-radius: 50%;
+    width: 20px!important;
+    height: 20px!important;
+    top: -2px!important;
+    right: -10px!important;
+    border: 3px solid black;
+    box-shadow: none;
 }

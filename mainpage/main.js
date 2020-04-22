@@ -117,7 +117,7 @@ let con = document.getElementById("content");
 let save = document.getElementById("saveSettings");
 document.getElementById("but").addEventListener("click", OpenSettings);
 document.getElementById("blurbut").addEventListener("click", MakeBlur);
-save.addEventListener('click', ChangeType);
+//save.addEventListener('click', ChangeType);
 function MakeBlur() {
     if (!BlurFlag) {
         root.style.setProperty('--VarBlur', 'blur(5px)');
@@ -130,12 +130,68 @@ function MakeBlur() {
         BlurFlag = false;
     }
 }
-function ChangeType() {
+/*function ChangeType() {
     let GridGap_X = document.getElementById("gridGap_X");
-    let GridGap_Y = document.getElementById("gridGap_Y");
-    let GridElSize = document.getElementById("gridElSize");
-    root.style.setProperty('--gap_X', (5 + +GridGap_X.value) + 'px');
+
+
     root.style.setProperty('--gap_Y', (5 + +GridGap_Y.value) + 'px');
     root.style.setProperty('--sizeX', + GridElSize.value + 'px');
+}*/
+let TextGapX = document.getElementById('gridGap_X');
+let TextGapY = document.getElementById("gridGap_Y");
+let GridElSize = document.getElementById("gridElSize");
+let sliderGapX = document.getElementById('slider_gapX');
+
+noUiSlider.create(sliderGapX, {
+    start: [5],
+    connect: true,
+    range: {
+        'min': [0, 1],
+        'max': 50
+    }
+});
+let sliderGapY = document.getElementById('slider_gapY');
+
+noUiSlider.create(sliderGapY, {
+    start: [5],
+    connect: true,
+    range: {
+        'min': [0, 1],
+        'max': 50
+    }
+});
+let sliderSize = document.getElementById('slider_size');
+
+noUiSlider.create(sliderSize, {
+    start: [250],
+    connect: true,
+    range: {
+        'min': [100, 5],
+        'max': 500
+    }
+});
+
+sliderGapX.noUiSlider.on('update', function (values, handle) {
+    root.style.setProperty('--gap_X', (5 + +values[handle]) + 'px');
+    TextGapX.value = values[handle];
     grid.refreshItems().layout();
-}
+});
+sliderGapY.noUiSlider.on('update', function (values, handle) {
+    root.style.setProperty('--gap_Y', (5 + +values[handle]) + 'px');
+    TextGapY.value = values[handle];
+    grid.refreshItems().layout();
+});
+
+sliderSize.noUiSlider.on('update', function (values, handle) {
+    root.style.setProperty('--sizeX', (+values[handle]) + 'px');
+    GridElSize.value = values[handle];
+    let maxh = -1;
+    grid.refreshItems().layout();
+    root.style.setProperty('--height', "auto");
+    for (let i = 1; i <= maxid+1; i++){
+        if (document.getElementById(i) != null && maxh < document.getElementById(i).clientHeight) maxh = document.getElementById(i).clientHeight;
+    }
+    root.style.setProperty('--height', maxh-10 + "px");
+    grid.refreshItems().layout();
+});
+
