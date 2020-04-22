@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "VkReOpt",
     "version": "1.0.0",
-    "permissions": ["storage", "declarativeContent", "tabs"],
+    "permissions": ["storage", "declarativeContent", "tabs", "notifications"],
     "content_scripts": [
         {
           "matches": [

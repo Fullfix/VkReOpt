@@ -39,8 +39,10 @@ const sendMessages = (ListOfMessages) => {
                     return true;
                 })
             }
-            newMessages = obj.messages.concat(createIds(ListOfMessages, obj.messages));
-            chrome.storage.local.set({messages: newMessages});
+            if (ListOfMessages.length >= 0) {
+                newMessages = obj.messages.concat(createIds(ListOfMessages, obj.messages));
+                chrome.storage.local.set({messages: newMessages});
+            }
         })
     })
 }
@@ -65,11 +67,11 @@ const parseTextDiv = (textDiv) => {
 }
 
 window.onload = () => {
-    document.addEventListener("keydown", (e) => {
+    document.addEventListener("keyup", (e) => {
         if (e.code == "AltRight") {
             let ListOfMessages = [];
             let ListOfDivs = document.getElementsByClassName("im-mess_selected")
-            if (ListOfDivs) {
+            if (ListOfDivs.length >= 0) {
                 for (let div of ListOfDivs) {
                     let parent = div.parentNode.parentNode.parentNode
                     let photoURL = parent.getElementsByTagName("img")[0].src;
@@ -80,7 +82,7 @@ window.onload = () => {
                         ListOfMessages.push([text, photoURL, name]);
                     }
                 }
-                if (ListOfMessages) {
+                if (ListOfMessages.length >= 0) {
                     sendMessages(ListOfMessages);
                     chrome.storage.sync.get("unselectAfterSave", (obj) => {
                         if (obj.unselectAfterSave) {
