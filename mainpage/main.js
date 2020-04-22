@@ -94,10 +94,12 @@ function OpenSettings() {
     }
 }
 window.onload = () => {
+    grid.remove();
     loadScreen();
     grid.refreshItems().layout();
     chrome.runtime.onMessage.addListener((message) => {
         if (message.activated) {
+            grid.remove();
             loadScreen();
             grid.refreshItems().layout();
         }
