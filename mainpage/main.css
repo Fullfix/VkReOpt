@@ -68,10 +68,15 @@ body{
 }
 .grid {
     width: var(--gridWidth);
+    position: absolute;
+    transition: transform 1s;
+}
+.wrapper {
+    width: var(--gridWidth);
     position: relative;
-    margin-top: 80px;
     transform: translate(var(--TXGrid), 0px);
     transition: transform 1s;
+    height: calc(100% - 80px);
 }
 .settings {
     position: fixed;
@@ -93,7 +98,7 @@ body{
     background-color: #3A4E65;
     height: 80px;
     width: 100%;
-    position: fixed;
+    position: sticky;
     top: 0px;
     z-index: 1000;
 }
@@ -177,4 +182,16 @@ body{
     right: -10px!important;
     border: 3px solid black;
     box-shadow: none;
+}
+html, body {
+    position: relative;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+body {
+    overflow: auto;
 }
