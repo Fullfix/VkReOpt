@@ -20,6 +20,38 @@ const changeMessageOrder = (messages) => {
     })
 }
 
+const enableTextMode = () => {
+    document.body.style.cursor = "url('../icons/texticon.png'), auto";
+    cursorModeText = true;
+}
+
+const disableTextMode = () => {
+    document.body.style.cursor = "auto";
+    cursorModeText = false;
+}
+
+const startTextAdding = (e) => {
+    let text = document.createElement('input');
+    text.className = "added_text";
+    text.style.top = e.pageY;
+    text.style.left = e.pageX;
+    document.body.appendChild(text);
+}
+
+const initText = () => {
+    document.getElementById("textbut").addEventListener("click", () => {
+        if (!cursorModeText) {
+            enableTextMode();
+            window.addEventListener("click", startTextAdding);
+        }
+        else {
+            disableTextMode();
+            window.removeEventListener("click", startTextAdding);
+        }
+    })
+}
+
+let cursorModeText = false;
 let grid = new Muuri('.grid', {dragEnabled: true, dragPlaceholder: {
         enabled: true
     }, layout: {
@@ -104,7 +136,7 @@ window.onload = () => {
             grid.refreshItems().layout();
         }
     })
-
+    initText();
 }
 let flag = false;
 let BlurFlag = false;
