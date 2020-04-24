@@ -34,6 +34,9 @@ const startTextAdding = (e) => {
     if (e.target.className == "text_inp" || e.target.className == "text_div") {
         return;
     }
+    if (e.target.className == "resizer") {
+        return;
+    }
     let div = document.createElement("div");
     let inp = document.createElement("input");
     div.className = "text_div";
@@ -47,9 +50,34 @@ const startTextAdding = (e) => {
     if (settings.style.transform == "translate(0px, 0px)") {
         width = 300;
     }
-    div.addEventListener("click", function (e) {
+    div.addEventListener("click", function init(ev) {
+        div.removeEventListener("click", init);
         this.className = "text_div selected_text";
+        let resizer = document.createElement("div");
+        resizer.className = "resizer";
+        div.appendChild(resizer);
+        resizer.addEventListener('mousedown', initDrag);
     })
+    let startX, startY, startWidth, startHeight;
+    function initDrag(ev) {
+        startX = ev.clientX;
+        startY = ev.clientY;
+        startWidth = parseInt(document.defaultView.getComputedStyle(div).width, 10);
+        startHeight = parseInt(document.defaultView.getComputedStyle(div).height, 10);
+        document.documentElement.addEventListener('mousemove', doDrag, false);
+        document.documentElement.addEventListener('mouseup', stopDrag, false);
+     }
+
+     function doDrag(ev) {
+        div.style.width = (startWidth + ev.clientX - startX) + 'px';
+        div.style.height = (startHeight + ev.clientY - startY) + 'px';
+     }
+     
+     function stopDrag(ev) {
+         document.documentElement.removeEventListener('mousemove', doDrag, false);
+         document.documentElement.removeEventListener('mouseup', stopDrag, false);
+     }
+
     div.addEventListener("mouseout", function (e) {
         this.className = "text_div";
     })
@@ -65,6 +93,11 @@ const initText = () => {
     let draggable = new Draggable.Draggable(document.querySelector('.wrapper'), {
         draggable: ".text_div"
     })
+    draggable.on("drag:start", (e) => {
+        if (e.sensorEvent.target.className == "resizer") {
+            e.cancel();
+        }
+    })
     draggable.on("drag:move", (e) => {
         let settings = document.querySelector('#settings');
         let width = 0;
@@ -79,6 +112,7 @@ const initText = () => {
         root.style.setProperty('--miry', y);
         document.querySelector(".draggable-mirror").style.transform = "translate3d("+x+","+y+", 0px)";
     })
+
     document.getElementById("textbut").addEventListener("click", () => {
         if (!cursorModeText) {
             enableTextMode();
