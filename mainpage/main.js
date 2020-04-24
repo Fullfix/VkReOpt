@@ -47,6 +47,12 @@ const startTextAdding = (e) => {
     if (settings.style.transform == "translate(0px, 0px)") {
         width = 300;
     }
+    div.addEventListener("click", function (e) {
+        this.className = "text_div selected_text";
+    })
+    div.addEventListener("mouseout", function (e) {
+        this.className = "text_div";
+    })
     let x = e.pageX - width + 'px';
     let y = e.pageY - height + 'px';
     div.style.transform = "translate3d("+x+","+y+", 0px)";
