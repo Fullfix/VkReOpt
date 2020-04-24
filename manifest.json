@@ -19,5 +19,5 @@
     "browser_action": {
         "default_popup": "popup/popup.html"
     },
-    "content_security_policy": "script-src 'self' https://unpkg.com/muuri@0.8.0/dist/muuri.min.js https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.10.1/Sortable.js https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenLite.min.js https://cdnjs.cloudflare.com/ajax/libs/draggable/1.0.0-beta.9/draggable.bundle.js; object-src 'self'"
+    "content_security_policy": "script-src 'self' https://unpkg.com/muuri@0.8.0/dist/muuri.min.js https://cdnjs.cloudflare.com/ajax/libs/draggable/1.0.0-beta.9/draggable.bundle.js; object-src 'self'"
 }

@@ -31,22 +31,54 @@ const disableTextMode = () => {
 }
 
 const startTextAdding = (e) => {
-    let text = document.createElement('input');
-    text.className = "added_text";
-    text.style.top = e.pageY;
-    text.style.left = e.pageX;
-    document.body.appendChild(text);
+    if (e.target.className == "text_inp" || e.target.className == "text_div") {
+        return;
+    }
+    let div = document.createElement("div");
+    let inp = document.createElement("input");
+    div.className = "text_div";
+    inp.className = "text_inp";
+    inp.readOnly = "true";
+    inp.addEventListener("mouseout", function() {this.readOnly = "true"});
+    inp.ondblclick = function() {this.readOnly = ""};
+    let settings = document.querySelector('#settings');
+    let width = 0;
+    let height = 80;
+    if (settings.style.transform == "translate(0px, 0px)") {
+        width = 300;
+    }
+    let x = e.pageX + 'px';
+    let y = e.pageY + 'px';
+    div.style.transform = "translate3d("+x+","+y+", 0px)";
+    div.style.position = "fixed";
+    div.appendChild(inp);
+    document.querySelector(".wrapper").appendChild(div);
 }
 
 const initText = () => {
+    let draggable = new Draggable.Draggable(document.querySelector('.wrapper'), {
+        draggable: ".text_div"
+    })
+    draggable.on("drag:move", (e) => {
+        let settings = document.querySelector('#settings');
+        let width = 0;
+        let height = 80;
+        if (settings.style.transform == "translate(0px, 0px)") {
+            width = 300;
+        }
+        let x = e.sensorEvent.clientX - width + 'px';
+        let y = e.sensorEvent.clientY - height + 'px';
+        e.originalSource.style.transform = "translate3d("+x+","+y+", 0px)";
+        document.querySelector(".draggable-mirror").style.transform = "translate3d("+x+","+y+", 0px)";
+    })
     document.getElementById("textbut").addEventListener("click", () => {
         if (!cursorModeText) {
             enableTextMode();
-            window.addEventListener("click", startTextAdding);
+            document.querySelector('.wrapper').addEventListener("click", startTextAdding);
         }
         else {
             disableTextMode();
-            window.removeEventListener("click", startTextAdding);
+            document.querySelector('.wrapper').removeEventListener("click", startTextAdding);
         }
     })
 }
