@@ -47,8 +47,8 @@ const startTextAdding = (e) => {
     if (settings.style.transform == "translate(0px, 0px)") {
         width = 300;
     }
-    let x = e.pageX + 'px';
-    let y = e.pageY + 'px';
+    let x = e.pageX - width + 'px';
+    let y = e.pageY - height + 'px';
     div.style.transform = "translate3d("+x+","+y+", 0px)";
     div.style.position = "fixed";
     div.appendChild(inp);
@@ -66,9 +66,11 @@ const initText = () => {
         if (settings.style.transform == "translate(0px, 0px)") {
             width = 300;
         }
-        let x = e.sensorEvent.clientX - width + 'px';
-        let y = e.sensorEvent.clientY - height + 'px';
+        let x = (+e.sensorEvent.clientX - width) + 'px';
+        let y = (+e.sensorEvent.clientY - height) + 'px';
         e.originalSource.style.transform = "translate3d("+x+","+y+", 0px)";
+        root.style.setProperty('--mirx', x);
+        root.style.setProperty('--miry', y);
         document.querySelector(".draggable-mirror").style.transform = "translate3d("+x+","+y+", 0px)";
     })
     document.getElementById("textbut").addEventListener("click", () => {

@@ -195,3 +195,12 @@ html, body {
 body {
     overflow: auto;
 }
+.draggable-mirror{
+    transform: translate3d(var(--mirx), var(--miry), 0px)!important;
+}
+.draggable-source--is-dragging{
+    opacity: 0;
+}
+.text_div{
+    z-index: 100;
+}
