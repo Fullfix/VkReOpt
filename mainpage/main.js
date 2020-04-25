@@ -90,20 +90,21 @@ const startTextAdding = (e) => {
     div.appendChild(inp);
     document.querySelector(".wrapper").appendChild(div);
     div.onmousedown = function(e) {
-
+        if (e.target.className == "resizer") {
+            return;
+        }
         let coords = getCoords(div);
         let shiftX = e.pageX - coords.left;
         let shiftY = e.pageY - coords.top;
 
         div.style.position = 'absolute';
-        document.querySelector(".wrapper").appendChild(div);
         moveAt(e);
 
         div.style.zIndex = 1000;
 
         function moveAt(e) {
-            div.style.left = e.pageX - shiftX - 300 + 'px';
-            div.style.top = e.pageY - shiftY - 80 + 'px';
+            div.style.left = e.pageX - shiftX - width + 'px';
+            div.style.top = e.pageY - shiftY - height + 'px';
         }
 
         document.onmousemove = function(e) {
