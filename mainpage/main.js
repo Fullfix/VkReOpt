@@ -72,7 +72,7 @@ const startTextAdding = (e) => {
         div.style.width = (startWidth + ev.clientX - startX) + 'px';
         div.style.height = (startHeight + ev.clientY - startY) + 'px';
      }
-     
+
      function stopDrag(ev) {
          document.documentElement.removeEventListener('mousemove', doDrag, false);
          document.documentElement.removeEventListener('mouseup', stopDrag, false);
@@ -81,38 +81,48 @@ const startTextAdding = (e) => {
     div.addEventListener("mouseout", function (e) {
         this.className = "text_div";
     })
-    let x = e.pageX - width + 'px';
-    let y = e.pageY - height + 'px';
-    div.style.transform = "translate3d("+x+","+y+", 0px)";
+    console.log(e.pageX);
+    let x = e.pageX - width;
+    let y = e.pageY - height;
+    div.style.left = x + 'px';
+    div.style.top = y + 'px';
     div.style.position = "fixed";
     div.appendChild(inp);
     document.querySelector(".wrapper").appendChild(div);
+    div.onmousedown = function(e) {
+
+        let coords = getCoords(div);
+        let shiftX = e.pageX - coords.left;
+        let shiftY = e.pageY - coords.top;
+
+        div.style.position = 'absolute';
+        document.querySelector(".wrapper").appendChild(div);
+        moveAt(e);
+
+        div.style.zIndex = 1000;
+
+        function moveAt(e) {
+            div.style.left = e.pageX - shiftX - 300 + 'px';
+            div.style.top = e.pageY - shiftY - 80 + 'px';
+        }
+
+        document.onmousemove = function(e) {
+            moveAt(e);
+        };
+
+        div.onmouseup = function() {
+            document.onmousemove = null;
+            div.onmouseup = null;
+        };
+
+    }
+    div.ondragstart = function() {
+        return false;
+    };
+
 }
 
 const initText = () => {
-    let draggable = new Draggable.Draggable(document.querySelector('.wrapper'), {
-        draggable: ".text_div"
-    })
-    draggable.on("drag:start", (e) => {
-        if (e.sensorEvent.target.className == "resizer") {
-            e.cancel();
-        }
-    })
-    draggable.on("drag:move", (e) => {
-        let settings = document.querySelector('#settings');
-        let width = 0;
-        let height = 80;
-        if (settings.style.transform == "translate(0px, 0px)") {
-            width = 300;
-        }
-        let x = (+e.sensorEvent.clientX - width) + 'px';
-        let y = (+e.sensorEvent.clientY - height) + 'px';
-        e.originalSource.style.transform = "translate3d("+x+","+y+", 0px)";
-        root.style.setProperty('--mirx', x);
-        root.style.setProperty('--miry', y);
-        document.querySelector(".draggable-mirror").style.transform = "translate3d("+x+","+y+", 0px)";
-    })
-
     document.getElementById("textbut").addEventListener("click", () => {
         if (!cursorModeText) {
             enableTextMode();
@@ -123,6 +133,13 @@ const initText = () => {
             document.querySelector('.wrapper').removeEventListener("click", startTextAdding);
         }
     })
+}
+function getCoords(elem) {
+    let box = elem.getBoundingClientRect();
+    return {
+        top: box.top + pageYOffset,
+        left: box.left + pageXOffset
+    };
 }
 
 let cursorModeText = false;
