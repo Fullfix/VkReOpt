@@ -58,8 +58,8 @@ const addDragAndDrop = (div, width, height) => {
         moveAt(e);
         div.style.zIndex = 1000;
         function moveAt(e) {
-            div.style.left = e.pageX - shiftX - width + 'px';
-            div.style.top = e.pageY - shiftY - height + 'px';
+            div.style.left = (e.pageX - shiftX - width > 0 ? e.pageX - shiftX - width : 0) + 'px';
+            div.style.top = (e.pageY - shiftY - height > 0 ? e.pageY - shiftY - height : 0) + 'px';
         }
         document.onmousemove = function(e) {
             moveAt(e);
@@ -82,7 +82,7 @@ const startTextAdding = (e) => {
         return;
     }
     let div = document.createElement("div");
-    let inp = document.createElement("input");
+    let inp = document.createElement("textarea");
     div.className = "text_div";
     inp.className = "text_inp";
     inp.readOnly = "true";
@@ -99,8 +99,8 @@ const startTextAdding = (e) => {
     })
     let x = e.pageX - width;
     let y = e.pageY - height;
-    div.style.left = x + 'px';
-    div.style.top = y + 'px';
+    div.style.left = (x > 0 ? x : 0) + 'px';
+    div.style.top = (y > 0 ? y : 0) + 'px';
     div.style.position = "fixed";
     div.appendChild(inp);
     document.querySelector(".wrapper").appendChild(div);
