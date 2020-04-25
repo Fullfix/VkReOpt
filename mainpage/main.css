@@ -203,6 +203,7 @@ body {
 }
 .text_div{
     z-index: 100;
+    border: 2px solid dodgerblue;
 }
 
 .text_div .resizer {
@@ -213,4 +214,10 @@ body {
     right: 0; 
     bottom: 0; 
     cursor: se-resize; 
+}
+.text_inp{
+    width: 100%;
+    background: transparent;
+    height: 100%;
+    border: 0;
 }
