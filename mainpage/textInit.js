@@ -37,8 +37,14 @@ const addResizer = (div) => {
         document.documentElement.addEventListener('mouseup', stopDrag, false);
      }
      function doDrag(ev) {
-        div.style.width = (startWidth + ev.clientX - startX) + 'px';
-        div.style.height = (startHeight + ev.clientY - startY) + 'px';
+        let w = startWidth + ev.clientX - startX;
+        let h = startHeight + ev.clientY - startY;
+        if (w >= 30) {
+            div.style.width = w + 'px';
+        }
+        if (h >= 30) {
+            div.style.height = h + 'px';
+        }
      }
      function stopDrag(ev) {
          document.documentElement.removeEventListener('mousemove', doDrag, false);
@@ -58,8 +64,19 @@ const addDragAndDrop = (div, width, height) => {
         moveAt(e);
         div.style.zIndex = 1000;
         function moveAt(e) {
-            div.style.left = (e.pageX - shiftX - width > 0 ? e.pageX - shiftX - width : 0) + 'px';
-            div.style.top = (e.pageY - shiftY - height > 0 ? e.pageY - shiftY - height : 0) + 'px';
+            let wrapper = document.querySelector('.wrapper');
+            let w = e.pageX - shiftX - width;
+            let h = e.pageY - shiftY - height;
+            let maxW = wrapper.clientWidth - div.clientWidth;
+            let maxH = wrapper.clientHeight - div.clientHeight;
+            if (w < maxW)
+                div.style.left = (w > 0 ? w : 0) + 'px';
+            else
+                div.style.left = maxW;
+            if (h < maxH)
+                div.style.top = (h > 0 ? h : 0) + 'px';
+            else
+                div.style.top = maxH;
         }
         document.onmousemove = function(e) {
             moveAt(e);
