@@ -18,15 +18,20 @@ function getCoords(elem) {
     };
 }
 
+const changeSelection = (elem) => {
+    document.querySelectorAll('.text_div').forEach(div => div.className = "text_div");
+    elem.className = "text_div selected_text";
+}
+
 const addResizer = (div) => {
-    div.addEventListener("click", function init(ev) {
-        div.removeEventListener("click", init);
-        this.className = "text_div selected_text";
-        let resizer = document.createElement("div");
-        resizer.className = "resizer";
-        div.appendChild(resizer);
-        resizer.addEventListener('mousedown', initDrag);
+    changeSelection(div);
+    let resizer = document.createElement("div");
+    resizer.className = "resizer";
+    div.appendChild(resizer);
+    div.addEventListener("click", function() {
+        changeSelection(this);
     })
+    resizer.addEventListener('mousedown', initDrag);
     let startX, startY, startWidth, startHeight;
     function initDrag(ev) {
         startX = ev.clientX;
@@ -100,7 +105,7 @@ const startTextAdding = (e) => {
     }
     let div = document.createElement("div");
     let inp = document.createElement("textarea");
-    div.className = "text_div";
+    div.className = "text_div selected_text";
     inp.className = "text_inp";
     inp.readOnly = "true";
     inp.addEventListener("mouseout", function() {this.readOnly = "true"});
@@ -111,9 +116,6 @@ const startTextAdding = (e) => {
     if (settings.style.transform == "translate(0px, 0px)") {
         width = 300;
     }
-    div.addEventListener("mouseout", function (e) {
-        this.className = "text_div";
-    })
     let x = e.pageX - width;
     let y = e.pageY - height;
     div.style.left = (x > 0 ? x : 0) + 'px';

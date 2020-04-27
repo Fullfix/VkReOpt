@@ -203,7 +203,15 @@ body {
 }
 .text_div{
     z-index: 100;
-    border: 2px solid dodgerblue;
+    border: 2px dashed black;
+}
+
+.selected_text {
+    border: 2px solid dodgerblue !important;
+}
+
+.selected_text .resizer {
+    visibility: visible !important;
 }
 
 .text_div .resizer {
@@ -213,7 +221,8 @@ body {
     position: absolute; 
     right: 0; 
     bottom: 0; 
-    cursor: se-resize; 
+    cursor: se-resize;
+    visibility: hidden;
 }
 .text_inp{
     width: 100%;
