@@ -168,6 +168,12 @@ body{
     margin-top: 15px;
     border-radius: 8px;
 }
+#slider_Textsize{
+    width: 200px;
+    margin-left: 50px;
+    margin-top: 15px;
+    border-radius: 8px;
+}
 .noUi-handle:before, .noUi-handle:after{
     background: 0;
 }
@@ -231,6 +237,8 @@ body {
     border: 0;
     resize: none;
     padding: 0;
+    overflow: hidden;
+    font-size: var(--TextSize);
 }
 .text_inp:focus{
     outline: 0;

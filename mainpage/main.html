@@ -24,8 +24,8 @@
     </div>
 
     <div id="settings" class="settings" style="transform: translate(-300px, 0)">
-        <button class="blurbut" id="blurbut" style=""><img src="../icons/blur_icon.png" class="blur_icon" width="30px" style="">Размытие имён</button>
-        <button class="blurbut" id="textbut" style=""><img src="../icons/text_icon.png" class="text_icon" width="30px" style="">Вставить текст</button>
+        <button class="blurbut" id="blurbut"><img src="../icons/blur_icon.png" class="blur_icon" width="30px">Размытие имён</button>
+        <button class="blurbut" id="textbut"><img src="../icons/text_icon.png" class="text_icon" width="30px">Вставить текст</button>
         <p style="font-size: 18px;margin-bottom: 5px; margin-top: 10px;">Промежуток между сообщениями: </p>
         <div id="slider_gapX"></div>
         <input disabled type="number" id="gridGap_X" value="5" style="font-size: 16px; text-align: center; width: 150px; margin-top: 20px; background-color: white; color: black; border: 0;">
@@ -35,9 +35,12 @@
         <p style="font-size: 18px;margin-bottom: 5px; margin-top: 10px;">Ширина сообщений: </p>
         <div id="slider_size"></div>
         <input disabled type="number" id="gridElSize" value="250" style="font-size: 16px; text-align: center; width: 150px; margin-top: 20px; background-color: white; color: black; border: 0;">
+        <p style="font-size: 18px;margin-bottom: 5px; margin-top: 10px;">Размер текста: </p>
+        <div id="slider_Textsize"></div>
+        <input type="number" id="textSize" value="12" style="font-size: 16px; text-align: center; width: 150px; margin-top: 20px; background-color: white; color: black; border: 0;">
     </div>
     <div class="wrapper">
-        <div class="grid" id="grid" style=""></div>
+        <div class="grid" id="grid"></div>
     </div>
     <button id="but" class="setbut">
         <img src="../icons/Gear.png" width="50px" height="50px">

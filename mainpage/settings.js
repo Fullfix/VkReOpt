@@ -38,6 +38,7 @@ let TextGapX = document.getElementById('gridGap_X');
 let TextGapY = document.getElementById("gridGap_Y");
 let GridElSize = document.getElementById("gridElSize");
 let sliderGapX = document.getElementById('slider_gapX');
+let textSize = document.getElementById('textSize');
 
 noUiSlider.create(sliderGapX, {
     start: [5],
@@ -67,7 +68,34 @@ noUiSlider.create(sliderSize, {
         'max': 500
     }
 });
+let sliderTextSize = document.getElementById('slider_Textsize');
 
+noUiSlider.create(sliderTextSize, {
+    start: [12],
+    connect: true,
+    range: {
+        'min': [8, 2],
+        'max': 80
+    }
+});
+sliderTextSize.noUiSlider.on('slide', function(values, handle){
+    textSize.value = values[handle];
+    root.style.setProperty('--TextSize', +textSize.value + 'px');
+})
+textSize.oninput = function(){
+    if (+textSize.value % 2 == 0 && +textSize.value >= 8 && +textSize.value <= 80)
+        sliderTextSize.noUiSlider.set(+textSize.value)
+    else if (+textSize.value >= 8 && +textSize.value <= 80)
+        sliderTextSize.noUiSlider.set(+textSize.value - 1)
+    else
+    {
+        if (+textSize.value < 8)
+            sliderTextSize.noUiSlider.set(8)
+        else
+            sliderTextSize.noUiSlider.set(80)
+    }
+    root.style.setProperty('--TextSize', +textSize.value + 'px');
+}
 sliderGapX.noUiSlider.on('update', function (values, handle) {
     root.style.setProperty('--gap_X', (5 + +values[handle]) + 'px');
     TextGapX.value = values[handle];
