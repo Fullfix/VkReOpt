@@ -119,3 +119,11 @@ sliderSize.noUiSlider.on('update', function (values, handle) {
     root.style.setProperty('--height', maxh-10 + "px");
     grid.refreshItems().layout();
 });
+let delText = document.getElementById("delTbut");
+delText.addEventListener('click', deleteText)
+function deleteText(){
+    let selected = document.querySelector(".selected_text");
+    if (selected) {
+        document.querySelector('.wrapper').removeChild(selected);
+    }
+}

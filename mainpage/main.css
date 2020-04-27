@@ -243,3 +243,18 @@ body {
 .text_inp:focus{
     outline: 0;
 }
+#delTbut{
+    margin-top: 10px;
+    display: block;
+    width: 170px;
+    margin-left: 65px;
+    height: 40px;
+    background: 0;
+    border: 0;
+    position: relative;
+}
+.trash_icon{
+    left: -10px;
+    bottom: 5px;
+    position: absolute;
+}

@@ -5,6 +5,10 @@ const renderMainPage = () => {
 
 window.onload = () => {
     document.getElementById("redirectbtn").addEventListener("click", renderMainPage)
+    document.getElementById("deletebtn").addEventListener('click', ()=>{
+        chrome.storage.local.set({messages: []});
+        document.getElementById("nummessages").innerHTML = "Сохранено сообщений: " + 0;
+    })
     document.getElementById("allow-same-messages").addEventListener("change", function() {
         chrome.storage.sync.set({allowSameMessages: this.checked});
     })

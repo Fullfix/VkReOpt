@@ -98,3 +98,16 @@ p {
 h1 {
     color: #3A4E65;
 }
+#deletebtn{
+    display: block;
+    bottom: 0px;
+    background: none;
+    border: 0;
+    width: 100%;
+    font-size: 20px;
+    color: #3A4E65;
+    padding: 0;
+    left: 0px;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
