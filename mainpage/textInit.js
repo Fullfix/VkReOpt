@@ -3,11 +3,15 @@ let cursorModeText = false;
 const enableTextMode = () => {
     document.body.style.cursor = "url('../icons/texticon.png'), auto";
     cursorModeText = true;
+    document.querySelector('.wrapper').addEventListener("click", startTextAdding);
+    document.querySelector('.wrapper').removeEventListener("click", unselectText);
 }
 
 const disableTextMode = () => {
     document.body.style.cursor = "auto";
     cursorModeText = false;
+    document.querySelector('.wrapper').removeEventListener("click", startTextAdding);
+    document.querySelector('.wrapper').addEventListener("click", unselectText);
 }
 
 function getCoords(elem) {
@@ -146,13 +150,9 @@ const initText = () => {
     document.getElementById("textbut").addEventListener("click", () => {
         if (!cursorModeText) {
             enableTextMode();
-            document.querySelector('.wrapper').addEventListener("click", startTextAdding);
-            document.querySelector('.wrapper').removeEventListener("click", unselectText);
         }
         else {
             disableTextMode();
-            document.querySelector('.wrapper').removeEventListener("click", startTextAdding);
-            document.querySelector('.wrapper').addEventListener("click", unselectText);
         }
     })
     document.querySelector('.wrapper').addEventListener("contextmenu", (e) => {
