@@ -5,6 +5,7 @@ const enableTextMode = () => {
     cursorModeText = true;
     document.querySelector('.wrapper').addEventListener("click", startTextAdding);
     document.querySelector('.wrapper').removeEventListener("click", unselectText);
+    root.style.setProperty('--TextInvert', '1');
 }
 
 const disableTextMode = () => {
@@ -12,6 +13,7 @@ const disableTextMode = () => {
     cursorModeText = false;
     document.querySelector('.wrapper').removeEventListener("click", startTextAdding);
     document.querySelector('.wrapper').addEventListener("click", unselectText);
+    root.style.setProperty('--TextInvert', '0');
 }
 
 function getCoords(elem) {
