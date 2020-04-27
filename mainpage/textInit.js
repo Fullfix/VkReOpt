@@ -23,6 +23,21 @@ const changeSelection = (elem) => {
     elem.className = "text_div selected_text";
 }
 
+const unselectText = (e) => {
+    if (e.target.className == "text_div") {
+        changeSelection(e.target);
+        return;
+    }
+    if (e.target.className == "text_inp") {
+        changeSelection(e.target.parentNode);
+        return;
+    }
+    if (e.target.className == "resizer") {
+        return;
+    }
+    document.querySelectorAll('.text_div').forEach(div => div.className = "text_div");
+}
+
 const addResizer = (div) => {
     changeSelection(div);
     let resizer = document.createElement("div");
@@ -132,10 +147,12 @@ const initText = () => {
         if (!cursorModeText) {
             enableTextMode();
             document.querySelector('.wrapper').addEventListener("click", startTextAdding);
+            document.querySelector('.wrapper').removeEventListener("click", unselectText);
         }
         else {
             disableTextMode();
             document.querySelector('.wrapper').removeEventListener("click", startTextAdding);
+            document.querySelector('.wrapper').addEventListener("click", unselectText);
         }
     })
     document.addEventListener("keyup", (key) => {
