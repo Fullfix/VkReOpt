@@ -138,4 +138,12 @@ const initText = () => {
             document.querySelector('.wrapper').removeEventListener("click", startTextAdding);
         }
     })
+    document.addEventListener("keyup", (key) => {
+        if (key.code == "Delete") {
+            let selected = document.querySelector(".selected_text");
+            if (selected) {
+                document.querySelector('.wrapper').removeChild(selected);
+            }
+        }
+    })
 }
