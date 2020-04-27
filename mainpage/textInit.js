@@ -155,6 +155,11 @@ const initText = () => {
             document.querySelector('.wrapper').addEventListener("click", unselectText);
         }
     })
+    document.querySelector('.wrapper').addEventListener("contextmenu", (e) => {
+        e.preventDefault();
+        if (cursorModeText) disableTextMode();
+        return false;
+    })
     document.addEventListener("keyup", (key) => {
         if (key.code == "Delete") {
             let selected = document.querySelector(".selected_text");
