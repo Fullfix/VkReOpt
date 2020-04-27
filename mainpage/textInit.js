@@ -44,10 +44,10 @@ const addResizer = (div) => {
      function doDrag(ev) {
         let w = startWidth + ev.clientX - startX;
         let h = startHeight + ev.clientY - startY;
-        if (w >= 30) {
+        if (w >= 30 && ev.clientX < window.innerWidth - 10) {
             div.style.width = w + 'px';
         }
-        if (h >= 30) {
+        if (h >= 30 && ev.clientY < window.innerHeight - 10) {
             div.style.height = h + 'px';
         }
      }
