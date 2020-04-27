@@ -26,6 +26,33 @@ const unselectMessages = () => {
     if (btn) btn[0].click();
 }
 
+const showNotification = () => {
+    let text = document.createElement("div");
+    text.innerHTML = "Добавлены сообщения";
+    text.style.position = "fixed";
+    text.style.top = "200px";
+    text.style.width = "100%";
+    text.style.fontSize = "25px";
+    text.style.zIndex = "999";
+    text.style.textAlign = "center";
+    text.style.opacity = "1";
+    document.documentElement.appendChild(text);
+    let op = 1;
+    let h = 0;
+    let changeOpacity = setInterval(() => {
+        if (op <= 0) {
+            clearInterval(changeOpacity);
+            document.documentElement.removeChild(text);
+        }
+        else {
+            op -= 0.03;
+            h += 1;
+        }
+        text.style.top = (200 - h) + "px";
+        text.style.opacity = op;
+    }, 25);
+}
+
 const sendMessages = (ListOfMessages) => {
     chrome.storage.local.get("messages", (obj) => {
         chrome.storage.sync.get("allowSameMessages", (data) => {
@@ -39,7 +66,8 @@ const sendMessages = (ListOfMessages) => {
                     return true;
                 })
             }
-            if (ListOfMessages.length >= 0) {
+            if (ListOfMessages.length > 0) {
+                showNotification();
                 newMessages = obj.messages.concat(createIds(ListOfMessages, obj.messages));
                 chrome.storage.local.set({messages: newMessages});
             }
