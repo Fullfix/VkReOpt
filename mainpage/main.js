@@ -84,7 +84,6 @@ const loadScreen = function() {
     })
 
 }
-
 window.onload = () => {
     grid.remove();
     loadScreen();
