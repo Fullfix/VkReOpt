@@ -36,7 +36,6 @@ function MakeBlur() {
 
 let TextGapX = document.getElementById('gridGap_X');
 let TextGapY = document.getElementById("gridGap_Y");
-let GridElSize = document.getElementById("gridElSize");
 let sliderGapX = document.getElementById('slider_gapX');
 let textSize = document.getElementById('textSize');
 
