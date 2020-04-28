@@ -53,14 +53,32 @@ const showNotification = () => {
     }, 25);
 }
 
+const compareUrls = (a, b) => {
+    if (a.length != b.length) {
+        return false;
+    }
+    if (a.length == 0 && b.length == 0) {
+        return true;
+    }
+    else {
+        for (let i in a) {
+            if (b[i] != a[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
 const sendMessages = (ListOfMessages) => {
     chrome.storage.local.get("messages", (obj) => {
         chrome.storage.sync.get("allowSameMessages", (data) => {
             if (!data.allowSameMessages) {
                 ListOfMessages = ListOfMessages.filter(msg => {
                     for (let oldmsg of obj.messages) {
+                        console.log(msg, oldmsg);
                         if (msg[0] == oldmsg[0] && msg[1] == oldmsg[1] && msg[2] == oldmsg[2]
-                            && msg[3] == oldmsg[3]) {
+                            && compareUrls(msg[3], oldmsg[3])) {
                             return false;
                         }
                     }
