@@ -1,7 +1,7 @@
 const createIds = (ListOfMessages, oldMessages) => {
     let maxId;
     if (oldMessages.length > 0) {
-        let Idlist = oldMessages.map((msg => msg[3]));
+        let Idlist = oldMessages.map((msg => msg[4]));
         maxId = Math.max(...Idlist);
     }
     else {
@@ -53,32 +53,14 @@ const showNotification = () => {
     }, 25);
 }
 
-const compareUrls = (a, b) => {
-    if (a.length != b.length) {
-        return false;
-    }
-    if (a.length == 0 && b.length == 0) {
-        return true;
-    }
-    else {
-        for (let i in a) {
-            if (b[i] != a[i]) {
-                return false;
-            }
-        }
-        return true;
-    }
-}
-
 const sendMessages = (ListOfMessages) => {
     chrome.storage.local.get("messages", (obj) => {
         chrome.storage.sync.get("allowSameMessages", (data) => {
             if (!data.allowSameMessages) {
                 ListOfMessages = ListOfMessages.filter(msg => {
                     for (let oldmsg of obj.messages) {
-                        console.log(msg, oldmsg);
-                        if (msg[0] == oldmsg[0] && msg[1] == oldmsg[1] && msg[2] == oldmsg[2]
-                            && compareUrls(msg[3], oldmsg[3])) {
+                        if (msg[0] == oldmsg[0] && msg[1] == oldmsg[1] && msg[2] == oldmsg[2] 
+                            && msg[3] == oldmsg[3]) {
                             return false;
                         }
                     }
@@ -133,8 +115,13 @@ window.onload = () => {
                         let name = parent.getElementsByClassName("im-mess-stack--lnk")[0].innerHTML;
                         let textDiv = div.getElementsByClassName("im-mess--text wall_module _im_log_body")[0];
                         let [text, images] = parseTextDiv(textDiv);
-                        if (text || images) {
-                            ListOfMessages.push([text, photoURL, name, images]);
+                        if (text) {
+                            ListOfMessages.push([text, photoURL, name, "text"]);
+                        }
+                        if (images.length) {
+                            for (let image of images) {
+                                ListOfMessages.push([image, photoURL, name, "image"]);
+                            }
                         }
                     }
                     if (ListOfMessages.length >= 0) {
