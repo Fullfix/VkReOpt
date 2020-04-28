@@ -109,26 +109,6 @@ const loadScreen = function() {
                 grid.add(imgCont);
                 imgCont.style.width = imgImage.width + 'px';
                 imgCont.style.height = imgImage.height + 'px';
-                let sv = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-                let rope = document.createElementNS("http://www.w3.org/2000/svg", "line");
-                sv.setAttribute('class', "lineSV")
-                let fe = messageCont;
-                let se = imgCont;
-                let coors1 = matrixToArray(fe.style.transform);
-                let coors2 = matrixToArray(se.style.transform);
-                sv.appendChild(rope);
-                rope.id = "line" + message[4] + i;
-                rope.setAttribute('x1', (+coors2[0] + +GridElSize.value / 2));
-                rope.setAttribute('from', messageCont.id);
-                rope.setAttribute('to', imgCont.id);
-                rope.setAttribute('y1', (+coors2[1] + maxh / 2));
-                rope.setAttribute('x2', (+coors1[0] + +GridElSize.value / 2));
-                rope.setAttribute('y2', (+coors1[1] + maxh / 2));
-                rope.setAttribute('stroke', "red");
-                messageCont.setAttribute('linked', true);
-                imgCont.setAttribute('linked', true);
-                document.querySelector('.wrapper').appendChild(sv);
-
             }
             grid.refreshItems().layout();
         }
