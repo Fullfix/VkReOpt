@@ -258,11 +258,3 @@ body {
     bottom: 5px;
     position: absolute;
 }
-.lineSV {
-    width: 100vw;
-    height: 100vh;
-    z-index: 1000;
-    pointer-events: none;
-    position: fixed;
-    top: 0px;
-}
