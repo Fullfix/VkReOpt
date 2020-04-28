@@ -59,7 +59,8 @@ const sendMessages = (ListOfMessages) => {
             if (!data.allowSameMessages) {
                 ListOfMessages = ListOfMessages.filter(msg => {
                     for (let oldmsg of obj.messages) {
-                        if (msg[0] == oldmsg[0] && msg[1] == oldmsg[1] && msg[2] == oldmsg[2]) {
+                        if (msg[0] == oldmsg[0] && msg[1] == oldmsg[1] && msg[2] == oldmsg[2]
+                            && msg[3] == oldmsg[3]) {
                             return false;
                         }
                     }
@@ -76,9 +77,16 @@ const sendMessages = (ListOfMessages) => {
 }
 
 const parseTextDiv = (textDiv) => {
-    let textList = Array.from(textDiv.childNodes).filter(node => {
+    let children = Array.from(textDiv.childNodes);
+    let textList = children.filter(node => {
         return node.nodeName == "#text" || node.className == "emoji";
     });
+    let imagesDiv = textDiv.querySelector('.page_post_sized_thumbs');
+    let images = [];
+    if (imagesDiv) {
+        images = Array.from(imagesDiv.getElementsByTagName("a"))
+        .map(elem => elem.style.backgroundImage.slice(5, -2));
+    }
     let textString = "";
     for (let node of textList) {
         if (node.nodeType == 1) {
@@ -91,7 +99,7 @@ const parseTextDiv = (textDiv) => {
             textString += node.nodeValue;
         }
     }
-    return textString;
+    return [textString, images];
 }
 
 window.onload = () => {
@@ -106,9 +114,9 @@ window.onload = () => {
                         let photoURL = parent.getElementsByTagName("img")[0].src;
                         let name = parent.getElementsByClassName("im-mess-stack--lnk")[0].innerHTML;
                         let textDiv = div.getElementsByClassName("im-mess--text wall_module _im_log_body")[0];
-                        let text = parseTextDiv(textDiv);
-                        if (text) {
-                            ListOfMessages.push([text, photoURL, name]);
+                        let [text, images] = parseTextDiv(textDiv);
+                        if (text || images) {
+                            ListOfMessages.push([text, photoURL, name, images]);
                         }
                     }
                     if (ListOfMessages.length >= 0) {
