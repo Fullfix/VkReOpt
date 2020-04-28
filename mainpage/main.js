@@ -109,105 +109,12 @@ const loadScreen = function() {
                 grid.add(imgCont);
                 imgCont.style.width = imgImage.width + 'px';
                 imgCont.style.height = imgImage.height + 'px';
-                let sv = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-                let rope = document.createElementNS("http://www.w3.org/2000/svg", "line");
-                sv.setAttribute('class', "lineSV")
-                let fe = messageCont;
-                let se = imgCont;
-                let coors1 = matrixToArray(fe.style.transform);
-                let coors2 = matrixToArray(se.style.transform);
-                sv.appendChild(rope);
-                rope.id = "line" + message[4] + i;
-                rope.setAttribute('x1', (+coors2[0] + +GridElSize.value / 2));
-                rope.setAttribute('from', messageCont.id);
-                rope.setAttribute('to', imgCont.id);
-                rope.setAttribute('y1', (+coors2[1] + maxh / 2));
-                rope.setAttribute('x2', (+coors1[0] + +GridElSize.value / 2));
-                rope.setAttribute('y2', (+coors1[1] + maxh / 2));
-                rope.setAttribute('stroke', "red");
-                messageCont.setAttribute('linked', true);
-                imgCont.setAttribute('linked', true);
-                document.querySelector('.wrapper').appendChild(sv);
-
             }
             grid.refreshItems().layout();
         }
     })
 
 }
-grid.on('dragMove', function (item, event) {
-    if (item._element.getAttribute('linked') == 'true'){
-        let ropes = document.querySelectorAll('line');
-        let el = item.getElement();
-        for (let i in ropes){
-            console.log(ropes[i])
-            try {
-                if (ropes[i].getAttribute('from') == el.id){
-                    let coord = matrixToArray(el.style.transform);
-                    ropes[i].setAttribute('x2', +coord[0] + +GridElSize.value / 2)
-                    ropes[i].setAttribute('y2', +coord[1] + maxh / 2)
-                }
-                else if (ropes[i].getAttribute('to') == el.id){
-                    let coord = matrixToArray(el.style.transform);
-                    ropes[i].setAttribute('x1', +coord[0] + +GridElSize.value / 2)
-                    ropes[i].setAttribute('y1', +coord[1] + maxh / 2)
-                }
-            } catch(e){
-                console.log('Пофиг...')
-            }
-
-        }
-    }
-});
-grid.on('dragEnd', function(item, event){
-    if (item._element.getAttribute('linked') == 'true'){
-        let interval = setInterval(()=>{
-            let ropes = document.querySelectorAll('line');
-            let el = item.getElement();
-            for (let i in ropes){
-                console.log(ropes[i])
-                try {
-                    if (ropes[i].getAttribute('from') == el.id){
-                        let coord = matrixToArray(el.style.transform);
-                        ropes[i].setAttribute('x2', +coord[0] + +GridElSize.value / 2)
-                        ropes[i].setAttribute('y2', +coord[1] + maxh / 2)
-                    }
-                    else if (ropes[i].getAttribute('to') == el.id){
-                        let coord = matrixToArray(el.style.transform);
-                        ropes[i].setAttribute('x1', +coord[0] + +GridElSize.value / 2)
-                        ropes[i].setAttribute('y1', +coord[1] + maxh / 2)
-                    }
-                    clearInterval(interval)
-                } catch(e){
-                    console.log('Пофиг...')
-                }
-
-            }}, 100);
-    }
-})
-grid.on('move', function(item, event){
-    console.log('dd')
-    let interval2 = setInterval(()=>{
-        let ropes = document.querySelectorAll('line');
-        for (let j in ropes){
-            try {
-            let fs = document.getElementById(ropes[j].getAttribute('from'));
-            } catch(e){
-                console.log('СверхПофиг...')
-                clearInterval(interval2)
-            }
-            let fs = document.getElementById(ropes[j].getAttribute('from'));
-            let sc = document.getElementById(ropes[j].getAttribute('to'));
-            let coord1 = matrixToArray(fs.style.transform);
-            ropes[j].setAttribute('x2', +coord1[0] + +GridElSize.value / 2)
-            ropes[j].setAttribute('y2', +coord1[1] + maxh / 2)
-            let coord2 = matrixToArray(sc.style.transform);
-            ropes[j].setAttribute('x1', +coord2[0] + +GridElSize.value / 2)
-            ropes[j].setAttribute('y1', +coord2[1] + maxh / 2)
-        }
-        clearInterval(interval2)
-    }, 100);
-})
 window.onload = () => {
     grid.remove();
     loadScreen();
