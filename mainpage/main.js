@@ -44,6 +44,19 @@ grid.on('dragReleaseEnd', (item) => {
     }));
 })
 
+const findBestHeight = (H, h) => {
+    let AllHeights = []
+    for (let n=1;n<=5;n++) {
+        AllHeights.push(n*h - 10 - H);
+    }
+    AllHeights.sort((a, b) => {
+        if (Math.abs(a) > Math.abs(b)) return 1;
+        else if (Math.abs(a) < Math.abs(b)) return -1;
+        else return 0; 
+    })
+    return AllHeights[0] + H;
+}
+
 
 let maxh = -1;
 const loadScreen = function() {
@@ -86,7 +99,6 @@ const loadScreen = function() {
                 messageDiv.appendChild(imageDiv);
                 messageCont.id = 'img' + message[4];
                 messageCont.style.height = 'auto';
-                //imageDiv.style.height = imageDiv.clientHeight - imageDiv.clientHeight % (maxh)
             }
             messageCont.className = "item " + message[3];
             messageCont.appendChild(messageDiv);
@@ -94,11 +106,13 @@ const loadScreen = function() {
             
             if (messageCont.id != 'img' + message[4] && maxid < messageCont.id) maxid = messageCont.id;
             for (let i = 1; i <= maxid+1; i++){
-                if (document.getElementById(i) != null && maxh < document.getElementById(i).clientHeight) maxh = document.getElementById(i).clientHeight;
+                if (document.getElementById(i) != null && maxh < document.getElementById(i).clientHeight) 
+                    maxh = document.getElementById(i).clientHeight;
             }
             root.style.setProperty('--height', maxh-10 + "px");
             if (message[3] != "text"){
-                imageDiv.style.height = imageDiv.clientHeight - imageDiv.clientHeight % (maxh - 10);
+                // imageDiv.style.height = imageDiv.clientHeight - imageDiv.clientHeight % (maxh) + "px";
+                // imageDiv.style.height = findBestHeight(imageDiv.clientHeight, maxh) + "px";
             }
             grid.refreshItems().layout();
         }
