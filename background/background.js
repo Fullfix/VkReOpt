@@ -7,9 +7,16 @@ chrome.runtime.onInstalled.addListener((details) => {
 
 chrome.extension.onMessage.addListener((message) => {
     if (message.mainpagecreated == true) {
-        chrome.tabs.getSelected(null, (tab) => {
-            mainTabId = tab.id;
-        })
+        if (!mainTabId) {
+            chrome.tabs.create({url: chrome.extension.getURL("mainpage/main.html")}, () => {
+                chrome.tabs.getSelected(null, (tab) => {
+                    mainTabId = tab.id;
+                })
+            });
+        }
+        else {
+            chrome.tabs.update(mainTabId, {highlighted: true});
+        }
     }
 })
 
