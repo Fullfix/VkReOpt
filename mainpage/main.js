@@ -71,28 +71,35 @@ const loadScreen = function() {
             messageDiv.appendChild(image);
             messageDiv.appendChild(infoDiv);
             messageDiv.appendChild(deleteBtn);
+            let messageCont = document.createElement("div");
             if (message[3] == "text") {
                 let textDiv = document.createElement("div");
                 textDiv.innerHTML = message[0];
                 textDiv.className = "message_text";
                 messageDiv.appendChild(textDiv);
+                messageCont.id = message[4];
             }
             else {
-                let imageDiv = document.createElement("img");
+                var imageDiv = document.createElement("img");
                 imageDiv.src = message[0];
                 imageDiv.className = "message_image";
                 messageDiv.appendChild(imageDiv);
+                messageCont.id = 'img' + message[4];
+                messageCont.style.height = 'auto';
+                //imageDiv.style.height = imageDiv.clientHeight - imageDiv.clientHeight % (maxh)
             }
-            let messageCont = document.createElement("div");
             messageCont.className = "item " + message[3];
             messageCont.appendChild(messageDiv);
             grid.add(messageCont);
-            messageCont.id = message[4];
-            if (maxid < messageCont.id) maxid = messageCont.id;
+            
+            if (messageCont.id != 'img' + message[4] && maxid < messageCont.id) maxid = messageCont.id;
             for (let i = 1; i <= maxid+1; i++){
                 if (document.getElementById(i) != null && maxh < document.getElementById(i).clientHeight) maxh = document.getElementById(i).clientHeight;
             }
             root.style.setProperty('--height', maxh-10 + "px");
+            if (message[3] != "text"){
+                imageDiv.style.height = imageDiv.clientHeight - imageDiv.clientHeight % (maxh - 10);
+            }
             grid.refreshItems().layout();
         }
     })
