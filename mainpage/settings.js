@@ -126,3 +126,10 @@ function deleteText(){
         document.querySelector('.wrapper').removeChild(selected);
     }
 }
+function renderimg(){
+    html2canvas(document.querySelector(".wrapper"), {allowTaint: true}).then(canvas => {
+        document.body.appendChild(canvas)
+    });
+}
+let render = document.getElementById('render')
+render.addEventListener('click', renderimg)
