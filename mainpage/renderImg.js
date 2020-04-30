@@ -16,7 +16,7 @@ const prepareText = (clone) => {
     clone.querySelectorAll(".text_div").forEach(div => {
         div.className = "text_div";
         div.style.border = "0";
-        if (div.querySelector(".text_inp").value == "") {
+        if (div.querySelector(".text_inp").innerHTML == "") {
             clone.removeChild(div);
             return;
         }
