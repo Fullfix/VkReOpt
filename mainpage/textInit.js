@@ -132,8 +132,8 @@ const startTextAdding = (e) => {
     div.className = "text_div selected_text";
     inp.className = "text_inp";
     inp.readOnly = "true";
-    inp.addEventListener("mouseout", function() {this.setAttribute('contenteditable', false)});
-    inp.ondblclick = function() {this.setAttribute('contenteditable', true)};
+    //inp.addEventListener("mouseout", function() {this.setAttribute('contenteditable', false)});
+    //inp.ondblclick = function() {this.setAttribute('contenteditable', true)};
     let settings = document.querySelector('#settings');
     let width = 0;
     let height = 80;
