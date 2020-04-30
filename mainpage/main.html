@@ -23,7 +23,10 @@
             <h1 style="margin-left: 55px; margin-top: 10px; margin-bottom: 0; color: white">ReOpt</h1>
         </div>
     </div>
-
+    <div class="render_result" style="display: none;">
+        <h1><a href="#" id="downloadIMG" style="text-decoration: none!important;" download>Скачать</a></h1>
+        <a href="#" id="closeRender">Закрыть</a>
+    </div>
     <div id="settings" class="settings" style="transform: translate(-300px, 0)">
         <button class="blurbut" id="blurbut"><img src="../icons/blur_icon.png" class="blur_icon" width="30px">Размытие имён</button>
         <button class="blurbut" id="textbut"><img src="../icons/text_icon.png" class="text_icon" width="30px">Вставить текст</button>
@@ -40,7 +43,7 @@
         <div id="slider_Textsize"></div>
         <input type="number" id="textSize" value="12" style="font-size: 16px; text-align: center; width: 150px; margin-top: 20px; background-color: white; color: black; border: 0;">
         <button class="blurbut" id="delTbut"><img src="../icons/trash_icon.png" class="trash_icon" width="30px">Удалить текст</button>
-        <button id="render"></button>
+        <button id="render">Сохранить в формате png</button>
     </div>
     <div class="wrapper">
         <div class="grid" id="grid"></div>
