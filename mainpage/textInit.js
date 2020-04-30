@@ -125,12 +125,15 @@ const startTextAdding = (e) => {
         return;
     }
     let div = document.createElement("div");
-    let inp = document.createElement("textarea");
+    let inp = document.createElement("div");
+    div.style.width = '150px';
+    div.style.height = '60px';
+    inp.setAttribute('contenteditable', true)
     div.className = "text_div selected_text";
     inp.className = "text_inp";
     inp.readOnly = "true";
-    inp.addEventListener("mouseout", function() {this.readOnly = "true"});
-    inp.ondblclick = function() {this.readOnly = ""};
+    inp.addEventListener("mouseout", function() {this.setAttribute('contenteditable', false)});
+    inp.ondblclick = function() {this.setAttribute('contenteditable', true)};
     let settings = document.querySelector('#settings');
     let width = 0;
     let height = 80;

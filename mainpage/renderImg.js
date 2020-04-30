@@ -21,13 +21,6 @@ const prepareText = (clone) => {
             return;
         }
     })
-    clone.querySelectorAll(".text_div").forEach(div => {
-        let oldText = div.querySelector(".text_inp");
-        let newText = document.createElement("div");
-        newText.innerHTML = oldText.value;
-        div.appendChild(newText);
-        div.removeChild(oldText);
-    })
 }
 
 const renderImg = () => {
