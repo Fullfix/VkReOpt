@@ -1,17 +1,45 @@
-const calculateHeight = () => {
-    let heights = Array.from(document.querySelectorAll(".item")).map(elem => {
+const calculateHeight = (clone) => {
+    let heights = Array.from(clone.querySelectorAll(".item")).map(elem => {
         let s = elem.style.transform;
+        console.log(elem.offsetHeight);
         return parseInt(s.split("translateY")[1].slice(1, -3)) + elem.offsetHeight;
     })
-    return Math.max.apply(null, heights);
+    let textHeights = Array.from(clone.querySelectorAll(".text_div")).map(div => {
+        let top = div.style.top.slice(0, -2);
+        return parseInt(top) + parseInt(document.defaultView.getComputedStyle(div).height, 10);
+    })
+    if (textHeights.length == 0) textHeights = [0];
+    return Math.max(Math.max.apply(null, heights), Math.max.apply(null, textHeights));
+}
+
+const prepareText = (clone) => {
+    clone.querySelectorAll(".text_div").forEach(div => {
+        div.className = "text_div";
+        div.style.border = "0";
+        if (div.querySelector(".text_inp").value == "") {
+            clone.removeChild(div);
+            return;
+        }
+    })
+    clone.querySelectorAll(".text_div").forEach(div => {
+        let oldText = div.querySelector(".text_inp");
+        let newText = document.createElement("div");
+        newText.innerHTML = oldText.value;
+        div.appendChild(newText);
+        div.removeChild(oldText);
+    })
 }
 
 const renderImg = () => {
-    let maxHeight = calculateHeight();
     let clone = document.querySelector(".wrapper").cloneNode(true);
-    clone.className = "wrapper-clone";
-    clone.style.height = maxHeight + 20 + "px";
     document.body.appendChild(clone);
+    prepareText(clone);
+    let maxHeight = calculateHeight(clone);
+    clone.className = "wrapper-clone";
+    clone.style.height = maxHeight + 50 + "px";
+    clone.style.position = "relative";
+    clone.style.left = 0 + "px";
+    clone.style.top = 0 + "px";
     html2canvas(clone, {allowTaint: true}).then(canvas => {
         document.querySelector(".render_result").appendChild(canvas)
         canvas.style.width = "100%"
