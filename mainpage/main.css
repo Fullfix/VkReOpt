@@ -281,14 +281,15 @@ body {
     border: 0;
 }
 .render_result {
-    height: 90%;
-    top: 5%;
-    width: 90%;
-    left: 5%;
-    position: fixed;
     z-index: 1000000;
+    position: absolute;
     text-align: center;
-    background: white;
+    width: calc(100% - 100px);
+    top: 0;
+    right: 50px;
+    bottom: 0;
+    left: 50px;
+    margin: auto;
 }
 #closeRender {
     position: absolute;
@@ -297,4 +298,15 @@ body {
 }
 .wrapper_clone{
     text-align: center;
+}
+.black_screen{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    z-index: 1000000;
+    align-items: center;
+    background: rgb(0, 0, 0,  0.60);
+    top: 0;
+    left: 0;
+    transition: opacity 1s;
 }

@@ -38,18 +38,19 @@ const renderImg = () => {
         canvas.style.width = "100%"
         canvas.style.maxHeight ="calc(100% - 61px)"
         canvas.id = "imgc"
+        document.querySelector(".render_result").style.height = maxHeight + 150 + 'px';
         //let img = canvas.toDataURL("image/png");
         //document.getElementById("downloadIMG").href = img;
         
     });
-    document.querySelector(".render_result").style.display = "block";
+    document.querySelector(".black_screen").style.opacity = 1;
+    document.querySelector(".black_screen").style.pointerEvents = "";
     document.getElementById("closeRender").addEventListener('click', ()=>{
         let imgc = document.getElementById('imgc');
         document.querySelector(".render_result").removeChild(imgc);
-        document.querySelector(".render_result").style.display = "none";
-    })
-    document.getElementById("downloadIMG").addEventListener('click', ()=>{
-
+        document.querySelector(".black_screen").style.opacity = 0;
+        document.querySelector(".black_screen").style.pointerEvents = "none";
+        
     })
     document.body.removeChild(clone);
 }
