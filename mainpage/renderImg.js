@@ -47,7 +47,8 @@ const renderImg = () => {
     document.querySelector(".black_screen").style.pointerEvents = "";
     document.getElementById("closeRender").addEventListener('click', ()=>{
         let imgc = document.getElementById('imgc');
-        document.querySelector(".render_result").removeChild(imgc);
+        if (imgc)
+            document.querySelector(".render_result").removeChild(imgc);
         document.querySelector(".black_screen").style.opacity = 0;
         document.querySelector(".black_screen").style.pointerEvents = "none";
         
