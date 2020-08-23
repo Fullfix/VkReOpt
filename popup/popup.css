@@ -1,14 +1,14 @@
 body {
-    width: 300px;
-    height: 540px;
+    width: 340px;
+    height: 340px;
     background-color: #F5F5F5;
     font-family: -apple-system,BlinkMacSystemFont,Roboto,Open Sans,Helvetica Neue,"Noto Sans Armenian","Noto Sans Bengali","Noto Sans Cherokee","Noto Sans Devanagari","Noto Sans Ethiopic","Noto Sans Georgian","Noto Sans Hebrew","Noto Sans Kannada","Noto Sans Khmer","Noto Sans Lao","Noto Sans Osmanya","Noto Sans Tamil","Noto Sans Telugu","Noto Sans Thai",sans-serif;
 }
 .switch {
     position: relative;
     display: inline-block;
-    width: 40px;
-    height: 20px;
+    width: 50px;
+    height: 25px;
 }
 
 .switch input {
@@ -26,16 +26,16 @@ body {
     background-color: #ccc;
     -webkit-transition: .4s;
     transition: .4s;
-    border-radius: 10px;
+    border-radius: 13px;
 }
 .slider:before {
     position: absolute;
     border-radius: 50%;
     content: "";
-    height: 12px;
-    width: 12px;
-    left: 4px;
-    bottom: 4px;
+    height: 15px;
+    width: 15px;
+    left: 5px;
+    bottom: 5px;
     background-color: white;
     -webkit-transition: .4s;
     transition: .4s;
@@ -48,67 +48,150 @@ input:checked + .set_slider{
     background-color: black;
 }
 input:checked + .slider:before{
-    -webkit-transform: translateX(20px);
-    -ms-transform: translateX(20px);
-    transform: translateX(20px);
+    -webkit-transform: translateX(25px);
+    -ms-transform: translateX(25px);
+    transform: translateX(25px);
 }
-#redirectbtn{
-    display: block;
-    bottom: 0px;
-    position: absolute;
-    background: none;
-    border: 0;
-    width: 100%;
-    font-size: 20px;
-    color: #3A4E65;
-    padding: 0;
-    left: 0px;
-    margin-bottom: 5px;
-    font-weight: 700;
 
+.header {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
 }
+
+.enable-btn {
+    display: flex;
+    align-items: center;
+}
+
+.switch-name-enable {
+    margin: 0 0 0 5px;
+    font-weight: bold;
+    font-size: 20px;
+    color: #3A4E65;
+}
+
 .logo {
-    position: fixed;
-    right: 20px;
-    width: 100px;
-    height: 50px;
+    display: flex;
+    align-items: center;
 }
-.switch_name{
-    display: inline-block;
-    margin: 0;
-    font-size: 20px;
-    line-height: 20px;
-    position: absolute;
-    margin-left: 5px;
+
+.logo img {
+    width: 35px;
+    height: 35px;
 }
-.settings_logo{
-    margin-top: 5px;
-    margin-bottom: 5px;
+
+.logo p {
+    font-size: 24px;
+    font-family: Quando;
+    font-weight: bold;
+    margin: 0 0 0 5px;
+    color: #3A4E65;
 }
+
+.settings-section {
+    margin-top: 30px;
+}
+
+.settings-title {
+    font-size: 24px;
+    text-align: center;
+    color: #3A4E65;
+}
+
+.settings-wrapper {
+    padding: 0 10px;
+}
+
 .settings {
-    width: 250px;
-    height: 65px;
-    padding: 5px;
-    margin-left: 25px;
-    position: relative;
-    background: white;
+    background-color: white;
+    padding: 5px 0 5px 0;
 }
-p {
+
+.settings-part {
+    padding: 0 10px 0 10px;
+    height: 45px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.switch-name {
+    font-size: 18px;
+    width: 215px;
+    margin: 0;
+}
+
+.nummessages-text {
+    margin: 20px 0 0 0;
+    color: #4D7FBA;
+    font-weight: bold;
+    font-size: 22px;
+    text-align: center;
+}
+
+.nummessages-text span {
+    color: rgb(78, 78, 78) !important;
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+#deletebtn,
+#redirectbtn {
+   display: flex;
+   align-items: center;
+   width: 270px;
+   height: 40px;
+   padding: 5px;
+   font-size: 24px;
+   font-weight: bold;
+   justify-content: space-between;
+}
+
+#deletebtn:hover,
+#redirectbtn:hover {
+    background-color: rgba(253, 149, 30, 0.25);
+    cursor: pointer;
+}
+
+#deletebtn:active,
+#redirectbtn:active {
+    background-color: rgba(255, 102, 0, 0.363);
+}
+
+#deletebtn img,
+#redirectbtn img {
+    width: 30px;
+    height: 30px;
+}
+
+#deletebtn {
+    color: #EC6B6B;
+}
+
+#redirectbtn {
     color: #3A4E65;
 }
-h1 {
-    color: #3A4E65;
+
+.hotkey {
+    width: 80px;
+    height: 30px;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #F5F5F5;
+    text-align: center;
+    color: rgb(47, 47, 47);
+    border: none;
+    outline: 2px solid black;
 }
-#deletebtn{
-    display: block;
-    bottom: 0px;
-    background: none;
-    border: 0;
-    width: 100%;
-    font-size: 20px;
-    color: #3A4E65;
-    padding: 0;
-    left: 0px;
-    margin-bottom: 5px;
-    font-weight: 600;
+
+.hotkey:focus {
+    outline: 2px solid rgb(15, 126, 190);
 }

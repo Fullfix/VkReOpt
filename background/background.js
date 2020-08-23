@@ -2,7 +2,12 @@ let mainTabId = null;
 
 chrome.runtime.onInstalled.addListener((details) => {
     chrome.storage.local.set({messages: []});
-    chrome.storage.sync.set({unselectAfterSave: true, allowSameMessages: false, enabled: true});
+    chrome.storage.sync.set({
+        unselectAfterSave: true, 
+        allowSameMessages: false, 
+        enabled: true,
+        addMessageHotkey: 'AltLeft',
+    });
 })
 
 chrome.extension.onMessage.addListener((message) => {

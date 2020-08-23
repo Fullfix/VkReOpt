@@ -104,8 +104,8 @@ const parseTextDiv = (textDiv) => {
 
 window.onload = () => {
     document.addEventListener("keyup", (e) => {
-        chrome.storage.sync.get("enabled", (endata) => {
-            if (e.code == "AltRight" && endata.enabled) {
+        chrome.storage.sync.get(["enabled", "addMessageHotkey"], (endata) => {
+            if (e.code == endata.addMessageHotkey && endata.enabled) {
                 let ListOfMessages = [];
                 let ListOfDivs = document.getElementsByClassName("im-mess_selected")
                 if (ListOfDivs.length >= 0) {
