@@ -134,4 +134,14 @@ window.onload = () => {
     let scr = document.createElement("script");
     scr.src = "settings.js";
     document.body.appendChild(scr);
+    let r = Math.floor(Math.random() * 10);
+    if (r == 9){
+        document.getElementById("donation_window").style.display = "none"
+    }
+    else {
+        document.getElementById("donation_window").style.display = "block"
+    }
+    document.getElementById("bye").addEventListener('click', () => {
+        document.getElementById("donation_window").style.display = "none"
+    })
 }
