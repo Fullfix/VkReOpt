@@ -30,13 +30,24 @@ const changeMessageOrder = (messages) => {
     })  
 }
 
-let grid = new Muuri('.grid', {dragEnabled: true, dragPlaceholder: {
+let grid = new Muuri('.grid', {
+    dragEnabled: true, 
+    dragPlaceholder: {
         enabled: true
-    }, layout: {
+    }, 
+    layout: {
 
-    }, dragSortPredicate:{
+    }, 
+    dragSortPredicate: {
         threshold: 30
-    }});
+    },
+    dragStartPredicate: (item, e) => {
+        if (e.target.className === 'img_delete') {
+            return false;
+        }
+        return true;
+    }
+});
 
 grid.on('dragReleaseEnd', (item) => {
     changeMessageOrder(grid.getItems().map(elem => {

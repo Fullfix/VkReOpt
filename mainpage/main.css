@@ -272,6 +272,7 @@ body {
 }
 .message_image {
     width: var(--sizeX);
+    margin-top: 5px;
 }
 
 .settings-footer {
@@ -425,4 +426,15 @@ body {
     margin-top: 20px;
     width: 100%;
     height: 230px;
+}
+
+.img_delete:hover {
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.img_delete:focus {
+    border: none;
+    outline: none;
 }
