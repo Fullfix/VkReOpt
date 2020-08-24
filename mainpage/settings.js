@@ -18,7 +18,7 @@ let flag = false;
 let BlurFlag = false;
 let con = document.getElementById("content");
 let save = document.getElementById("saveSettings");
-document.getElementById("but").addEventListener("click", OpenSettings);
+// document.getElementById("but").addEventListener("click", OpenSettings);
 document.getElementById("blurbut").addEventListener("click", MakeBlur);
 
 function MakeBlur() {
@@ -130,3 +130,4 @@ let render = document.getElementById('render')
 let donate = document.getElementById('donate');
 render.addEventListener('click', renderImg)
 donate.addEventListener('click', openDonate);
+OpenSettings();
