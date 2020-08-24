@@ -32,15 +32,17 @@ const closeRender = () => {
 
 const renderImg = () => {
     let clone = document.querySelector(".wrapper").cloneNode(true);
-    document.body.appendChild(clone);
+    document.querySelector('.wrapper').style.display = "none";
+    document.querySelector('.wrapper-wrapper').appendChild(clone);
     prepareText(clone);
     let maxHeight = calculateHeight(clone);
     clone.className = "wrapper-clone";
     clone.style.height = maxHeight + parseInt(TextGapY.value) + 50 + "px";
     clone.style.position = "relative";
-    clone.style.left = 0 + "px";
-    clone.style.top = 0 + "px";
-    clone.style.width = window.innerWidth - 300 + parseInt(TextGapX.value) + "px";
+    clone.style.top = 0 + 'px';
+    clone.style.left = 300 + 'px';
+    // clone.style.width = window.innerWidth - 300 + parseInt(TextGapX.value) + "px";
+    clone.style.width = window.innerWidth - 300 + "px";
     html2canvas(clone, {allowTaint: true}).then(canvas => {
         document.querySelector(".render_result").appendChild(canvas)
         canvas.style.maxHeight ="calc(100% - 61px)"
@@ -55,7 +57,8 @@ const renderImg = () => {
             closeRender();
             document.querySelector(".black_screen").removeEventListener("click", blclick);
         })
-        document.body.removeChild(clone);
+        document.querySelector('.wrapper-wrapper').removeChild(clone);
+        document.querySelector('.wrapper').style.display = "block";
         
     });
 }
