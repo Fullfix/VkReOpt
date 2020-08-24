@@ -12,6 +12,9 @@
           "js": ["content/content.js"]
         }
     ],
+    "icons": {
+      "128": "icons/reoptlogo.png"
+    },
     "background": {
         "scripts": ["background/background.js"],
         "persistant": false
