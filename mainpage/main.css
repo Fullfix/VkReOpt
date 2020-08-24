@@ -446,3 +446,11 @@ body {
     border: none;
     outline: none;
 }
+
+.muuri-item:hover {
+    cursor: grab;
+}
+
+.muuri-item-dragging:hover {
+    cursor: move;
+}
