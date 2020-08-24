@@ -51,16 +51,26 @@
     <button id="but" class="setbut">
         <img src="../icons/Gear.png" width="50px" height="50px">
     </button>
-    <div id="donation_window" style="display:block; padding: 15px; position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 385px; background:white; border: 1px solid gray; border-radius: 20px;">
-        <h2 style="text-align: center;">Спасибо, что используете VkReOpt!</h2>
-        <div style="width: 120px; margin-top: 15px; height: 50px; left: 50%; transform: translate(-50%, 0%); position: relative;">
-            <img src="../icons/vk_icon.png" width="50px" height="50px" style="float: left">
-            <h1 style="position: relative; top: 10px; margin-top: 0px; margin-bottom: 0;">ReOpt</h1>
+    <div class="donate-layout" style="opacity: 0; pointer-events: none;">
+        <div id="donation_window">
+            <div class="donate-title">Спасибо, что используете VkReOpt!</div>
+            <div class="donate-logo">
+                <img src="../icons/vk_icon2.png" width="60px" height="60px">
+                <span>ReOpt</span>
+            </div>
+            <div class="donate-body">
+                <p>
+                    VkReOpt - это бесплатное расширение, поэтому для дальнейшего развития <span class="bold-span">
+                        требуется денежная поддержка от пользователей.
+                    </span>
+                </p>
+                <p>Если вас заинтересовал этот проект, то, пожалуйста, поддержите нас суммой, которую вы считаете подходящей. Спасибо!</p>
+                <iframe src="https://money.yandex.ru/quickpay/shop-widget?writer=seller&targets=%D0%9D%D0%B0%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D1%83%20%D1%80%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D1%8F&targets-hint=&default-sum=&button-text=14&payment-type-choice=on&mobile-payment-type-choice=on&hint=&successURL=&quickpay=shop&account=4100111754570733" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
+            </div>
+            <div class="bye-wrapper">
+                <button id="bye">Закрыть</button>
+            </div>
         </div>
-        <p style="font-size: 14px; text-align: center;">VkReOpt - это бесплатное расширение, поэтому для дальнейшего развития расширения требуется денежная поддержка от пользователей.</p>
-        <p style="font-size: 14px; text-align: center;">Если вас заинтересовал этот проект, то, пожалуйста, поддержите нас суммой, которую вы считаете подходящей. Спасибо!</p>
-        <iframe src="https://money.yandex.ru/quickpay/shop-widget?writer=seller&targets=%D0%9D%D0%B0%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D1%83%20%D1%80%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D1%8F&targets-hint=&default-sum=&button-text=14&payment-type-choice=on&mobile-payment-type-choice=on&hint=&successURL=&quickpay=shop&account=4100111754570733" width="385" height="230" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
-        <button id="bye" style="width: 100%; height: 40px; text-align: center;font-size: 24px; color: white; left: 0px; bottom: 0px; background: 0; border: 0; background: #487AFA;">Закрыть</button>
     </div>
     <script type="text/javascript" src="main.js"></script>
 </body>

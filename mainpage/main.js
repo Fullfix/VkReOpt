@@ -119,6 +119,23 @@ const loadScreen = function() {
     })
 
 }
+
+const openDonate = () => {
+    document.querySelector(".donate-layout").style.opacity = 1;
+    document.querySelector(".donate-layout").style.pointerEvents = "";
+    document.querySelector(".donate-layout").addEventListener("click", function blclick(e) {
+        if (e.target.className === 'donate-layout') {
+            closeDonate();
+            document.querySelector(".doante-layout").removeEventListener("click", blclick);
+        }
+    })
+}
+
+const closeDonate = () => {
+    document.querySelector(".donate-layout").style.opacity = 0;
+    document.querySelector(".donate-layout").style.pointerEvents = "none";
+}
+
 window.onload = () => {
     grid.remove();
     loadScreen();
@@ -136,12 +153,12 @@ window.onload = () => {
     document.body.appendChild(scr);
     let r = Math.floor(Math.random() * 10);
     if (r == 9){
-        document.getElementById("donation_window").style.display = "none"
+        
     }
     else {
-        document.getElementById("donation_window").style.display = "block"
+        openDonate();
     }
     document.getElementById("bye").addEventListener('click', () => {
-        document.getElementById("donation_window").style.display = "none"
+        closeDonate();
     })
 }
