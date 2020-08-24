@@ -43,7 +43,6 @@ const renderImg = () => {
     clone.style.width = window.innerWidth - 300 + parseInt(TextGapX.value) + "px";
     html2canvas(clone, {allowTaint: true}).then(canvas => {
         document.querySelector(".render_result").appendChild(canvas)
-        canvas.style.width = "100%"
         canvas.style.maxHeight ="calc(100% - 61px)"
         canvas.id = "imgc"
         document.querySelector(".render_result").style.height = maxHeight + 150 + 'px';
