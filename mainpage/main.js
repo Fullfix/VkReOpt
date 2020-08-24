@@ -126,7 +126,7 @@ const openDonate = () => {
     document.querySelector(".donate-layout").addEventListener("click", function blclick(e) {
         if (e.target.className === 'donate-layout') {
             closeDonate();
-            document.querySelector(".doante-layout").removeEventListener("click", blclick);
+            document.querySelector(".donate-layout").removeEventListener("click", blclick);
         }
     })
 }
@@ -153,9 +153,6 @@ window.onload = () => {
     document.body.appendChild(scr);
     let r = Math.floor(Math.random() * 10);
     if (r == 9){
-        
-    }
-    else {
         openDonate();
     }
     document.getElementById("bye").addEventListener('click', () => {

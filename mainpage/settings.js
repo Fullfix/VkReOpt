@@ -127,4 +127,6 @@ function deleteText(){
     }
 }
 let render = document.getElementById('render')
+let donate = document.getElementById('donate');
 render.addEventListener('click', renderImg)
+donate.addEventListener('click', openDonate);
