@@ -71,12 +71,20 @@ body{
     position: absolute;
     transition: transform 1s;
 }
-.wrapper {
+
+.wrapper-wrapper {
     width: var(--gridWidth);
     position: relative;
     transform: translate(var(--TXGrid), 0px);
     transition: transform 1s;
     height: calc(100% - 80px);
+}
+
+.wrapper {
+    width: var(--gridWidth);
+    position: relative;
+    transition: transform 1s;
+    height: 100%;
 }
 .settings {
     position: fixed;
