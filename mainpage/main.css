@@ -78,10 +78,6 @@ body{
     transform: translate(var(--TXGrid), 0px);
     transition: transform 1s;
     height: calc(100% - 80px);
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    background-color: grey;
 }
 
 .wrapper {
@@ -89,16 +85,7 @@ body{
     position: relative;
     transition: transform 1s;
     height: 100%;
-    box-sizing: border-box;
-    background-color: white;
-    padding: 5px;
 }
-
-.resizable {
-    padding: 0 !important;
-    border: 5px solid rgb(61, 61, 255);
-}
-
 .settings {
     position: fixed;
     width: 300px;
@@ -151,7 +138,7 @@ body{
     font-size: 18px;
     margin-bottom: 5px;
     margin-top: 10px;
-    width: 220px;
+    width: 200px;
     border: 0;
     background: 0;
     position: relative;
@@ -162,12 +149,6 @@ body{
 .blurbut:hover {
     cursor: pointer;
     color: #CFCFCF;
-}
-.resize_icon {
-    position: absolute;
-    left: 5px;
-    bottom: 1px;
-    filter: invert(var(--ResizeInvert));
 }
 .blur_icon{
     position: absolute;
@@ -261,17 +242,6 @@ body {
     cursor: se-resize;
     visibility: hidden;
 }
-
-.resizer-grid {
-    width: 50px;
-    height: 50px; 
-    background: rgb(61, 61, 255);
-    position: absolute; 
-    right: 0; 
-    bottom: 0; 
-    cursor: se-resize;
-}
-
 .text_inp{
     width: 100%;
     background: transparent;

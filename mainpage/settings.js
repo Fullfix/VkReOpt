@@ -16,13 +16,10 @@ function OpenSettings() {
 }
 let flag = false;
 let BlurFlag = false;
-let ResizeFlag = false;
 let con = document.getElementById("content");
 let save = document.getElementById("saveSettings");
 // document.getElementById("but").addEventListener("click", OpenSettings);
 document.getElementById("blurbut").addEventListener("click", MakeBlur);
-document.getElementById("resizebut").addEventListener("click", MakeResize);
-const { enableResizeMode, disableResizeMode } = initGridResizing();
 
 function MakeBlur() {
     if (!BlurFlag) {
@@ -34,19 +31,6 @@ function MakeBlur() {
         root.style.setProperty('--VarBlur', 'none');
         root.style.setProperty('--BlurInvert', '0');
         BlurFlag = false;
-    }
-}
-
-function MakeResize() {
-    if (!ResizeFlag) {
-        root.style.setProperty('--ResizeInvert', '1');
-        enableResizeMode();
-        ResizeFlag = true;
-    }
-    else {
-        root.style.setProperty('--ResizeInvert', '0');
-        disableResizeMode();
-        ResizeFlag = false;
     }
 }
 
