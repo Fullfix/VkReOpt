@@ -75,8 +75,7 @@ body{
 .wrapper-wrapper {
     width: var(--gridWidth);
     position: relative;
-    transform: translate(var(--TXGrid), 0px);
-    transition: transform 1s;
+    left: var(--TXGrid);
     height: calc(100% - 80px);
 }
 
@@ -94,7 +93,6 @@ body{
     top: 80px;
     left: 0px;
     background-color: #3A4E65;
-    transition: transform 1s;
     border-radius: 0px 0px 50px 0px;
     border: 2px black;
     text-align: center;

@@ -41,8 +41,8 @@ const renderImg = () => {
     clone.style.position = "relative";
     clone.style.top = 0 + 'px';
     clone.style.left = 0 + 'px';
-    // clone.style.width = window.innerWidth - 300 + parseInt(TextGapX.value) + "px";
-    clone.style.width = window.innerWidth - 300 + "px";
+    //clone.style.width = window.innerWidth - 300 + parseInt(TextGapX.value) + "px";
+    clone.style.width = window.innerWidth - 300 + 'px';
     html2canvas(clone, {allowTaint: true}).then(canvas => {
         document.querySelector(".render_result").appendChild(canvas)
         canvas.style.maxHeight ="calc(100% - 61px)"
